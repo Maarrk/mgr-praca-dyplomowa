@@ -20,26 +20,28 @@
 \graphicspath{{tex/img/}}         % Katalog z obrazkami.
 \addbibresource{bibliografia.bib} % Plik .bib z bibliografią
 
+\newenvironment{todo} {\color{magenta} \bfseries} {} % Formatowanie tymczasowych notatek
+
 \begin{document}
 
 %--------------------------------------
 % Strona tytułowa
 %--------------------------------------
 \MasterThesis % Dla pracy inżynierskiej mamy \EngineerThesis
-\instytut{XXXXXX}
-\kierunek{XXXXXX}
-\specjalnosc{XXXXXX}
+\instytut{Techniki Lotniczej i Mechaniki Stosowanej}
+\kierunek{Lotnictwo i Kosmonautyka}
+\specjalnosc{Automatyka i Systemy Lotnicze}
 \title{
-    Niepotrzebnie długi i skomplikowany tytuł pracy \\
-    trudny do przeczytania, zrozumienia i wymówienia
+    System do oceny umiejętności operatorów BSP \\
+    w środowisku wirtualnej rzeczywistości
 }
 \engtitle{ % Tytuł po angielsku do angielskiego streszczenia
-    Unnecessarily long and complicated thesis' title \\
-    difficult to read, understand and pronounce
+    System for evaluating UAV operator performance \\
+    in a virtual reality environment
 }
-\author{\{Imię i Nazwisko\}}
-\album{XXXXXX}
-\promotor{XXXXXX}
+\author{Marek Sławomir Łukasiewicz}
+\album{285680}
+\promotor{dr inż. Antoni Kopyt}
 \date{\the\year}
 \maketitle
 
@@ -47,15 +49,21 @@
 % Streszczenie po polsku
 %--------------------------------------
 \cleardoublepage % Zaczynamy od nieparzystej strony
-\streszczenie \lipsum[1-3]
-\slowakluczowe XXX, XXX, XXX
+\streszczenie 
+\begin{todo}
+    Streszczenie do napisania na koniec
+\end{todo}
+\slowakluczowe bezzałogowe statki powietrzne (BSP), interfejs człowiek maszyna, rzeczywistość wirtualna
 
 %--------------------------------------
 % Streszczenie po angielsku
 %--------------------------------------
 \newpage
-\abstract \kant[1-3]
-\keywords XXX, XXX, XXX
+\abstract
+\begin{todo}
+    ASbstract to be written at the end
+\end{todo}
+\keywords unmanned aerial vehicles (UAV), human-machine interface (HMI), virtual reality (VR)
 
 %--------------------------------------
 % Oświadczenie o autorstwie
@@ -76,13 +84,7 @@
 \cleardoublepage % Zaczynamy od nieparzystej strony
 \pagestyle{headings}
 
-\input{tex/1-wstep}         % Wygodnie jest trzymać każdy rozdział w osobnym pliku.
-\input{tex/2-de-finibus}    % Umożliwia to również łatwą migrację do nowej wersji szablonu:
-\input{tex/3-code-listings} % wystarczy podmienić swoje pliki main.tex i eiti-thesis.cls na nowe wersje.
-
-\newpage % Rozdziały zaczynamy od nowej strony
-\section{Summatio}          % Można też pisać rozdziały w jednym pliku.
-\lipsum[5-10]
+\input{tex/wstep}
 
 %--------------------------------------------
 % Literatura
@@ -108,9 +110,7 @@
 % //AB
 \vspace{0.8cm}
 \acronymlist
-\acronym{EiTI}{Wydział Elektroniki i Technik Informacyjnych}
-\acronym{PW}{Politechnika Warszawska}
-\acronym{WEIRD}{ang. \emph{Western, Educated, Industrialized, Rich and Democratic}}
+\acronym{BSP}{bezzałogowy statek powietrzny}
 
 \listoffigurestoc     % Spis rysunków.
 \vspace{1cm}          % vertical space
@@ -124,18 +124,9 @@
 \captionsetup[table]{list=no}
 
 % Załączniki
-\newpage
-\appendix{Nazwa załącznika 1}
-\lipsum[1-8]
-\begin{figure}[!h]
-	\label{fig:nowe-logo-pw2}
-	\centering \includegraphics[width=0.5\linewidth]{logopw2.png}
-	\caption{Współczesne logo Politechniki Warszawskiej - załącznik}
-\end{figure}
-
-\newpage
-\appendix{Nazwa załącznika 2}
-\lipsum[1-4]
+% \newpage
+% \appendix{Nazwa załącznika 1}
+% \lipsum[1-4]
 
 % Używając powyższych spisów jako szablonu,
 % możesz tu dodać swój własny wykaz bądź listę,
