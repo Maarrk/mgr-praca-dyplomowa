@@ -1,5 +1,8 @@
 \newpage
 \section{Wymagania wobec systemu}
-\begin{todo}
-    Wymagania wobec systemu, separacja architekturalna, portowalność na inne urządzenia. Scenariusze wykorzystania: w pełni symulowany, dron i przeszkody AR, dron i VR
-\end{todo}
+
+Podstawowym przeznaczeniem przygotowywanego systemu jest ułatwienie prowadzenia eksperymentów na temat szkolenia operatorów BSP korzystając z aplikacji komputerowych. Z tego powodu kluczową cechą jest elastyczność i łatwość rozszerzania systemu o nowe funkcje oraz scenariusze testowe. Interfejs użytkownika powinien umożliwiać łatwe tworzenie nowych otoczeń oraz zadań dla operatora. Ponieważ orientacja przestrzenna oraz ocena odległości są ważnymi umiejętnościami w obsłudze statków powietrznych \begin{todo}(¿jakie dać do tego źródło?)\end{todo}, wymagane jest aby system obsługiwał gogle wirtualnej rzeczywistości (VR), które przez stereowizję tworzą pozory trójwymiarowego obrazu.
+
+Dodatkowym wymogiem postawionym przez użytkownika aplikacji jest możliwość zastosowania go w trybie mieszanej rzeczywistości (AR). W tym wariancie szkolenia operator sterując rzeczywistym BSP ma omijać przeszkody które są wirtualne. Dzięki temu umiejętności pilotażu są nabywane z wykorzystaniem docelowego statku powietrznego, natomiast ryzyko uszkodzenia sprzętu w wyniku kolizji jest dużo niższe dzięki zastosowaniu niematerialnych przeszkód.
+
+Funkcjonalność automatycznej oceny operatora powinna umożliwiać użytkownikowi aplikacji formułowanie własnych kryteriów oceny. W zależności od wykonywanego eksperymentu ocena może korzystać z podstawowych parametrów lotu takich jak położenie, prędkość, orientacja przestrzenna. Ponadto aplikacja ma umożliwiać wprowadzenie wzorcowej trasy poprawnie wykonanego ćwiczenia, a następnie oceniać przelot na podstawie odchyłek od niej.

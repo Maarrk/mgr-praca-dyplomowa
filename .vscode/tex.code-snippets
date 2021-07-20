@@ -15,9 +15,15 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"TODO environment": {
+	"TODO environment inline": {
 		"scope": "latex",
 		"prefix": ["todo"],
+		"body": ["\\begin{todo}$0\\end{todo}"],
+		"description": "Custom TODO environment for temporary notes"
+	},
+	"TODO environment block": {
+		"scope": "latex",
+		"prefix": ["TODO"],
 		"body": ["\\begin{todo}", "    $0", "\\end{todo}"],
 		"description": "Custom TODO environment for temporary notes"
 	}
