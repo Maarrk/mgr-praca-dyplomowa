@@ -2,6 +2,7 @@
 \section{Opis systemu}
 
 \subsection{Architektura}
+\label{sec:architektura}
 
 Aby spełnić wszystkie postawione powyżej wymagania, zdecydowano podzielić system na kilka osobnych aplikacji, pomiędzy którymi komunikacja jest zrealizowana za pomocą adekwatnych protokołów sieciowych. Poszczególne moduły oraz połączenia pomiędzy nimi przedstawiono na rysunku \ref{fig:architektura}. Dzięki takiemu rozwiązaniu, można było wykorzystać dostępne oprogramowanie do symulacji dynamiki oraz kompletne oprogramowanie autopilota stosowane na rzeczywistych BSP. Dużą zaletą zastosowania ArduPilot SiTL \begin{todo}https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html\end{todo} jest format danych w którym przesyłane są informacje o stanie BSP. Ponieważ jest identyczny z komunikacją wysyłaną z rzeczywistego BSP kontrolowanego z wykorzystaniem \emph
 {firmware} ArduPilot, można wykorzystywać taki sam program do łączenia z symulacją jak i fizycznym BSP w trybie AR.
@@ -14,9 +15,9 @@ Aby spełnić wszystkie postawione powyżej wymagania, zdecydowano podzielić sy
 
 Aby móc stosować jedną aplikację zarówno z goglami VR oraz AR, wizualizacja została przygotowana z wykorzystaniem Unreal Engine 4 \begin{todo}https://www.unrealengine.com/\end{todo}. To środowisko jest przykładem tzw. ,,silnika'' gier komputerowych. Aby umożliwić uruchamianie tej samej aplikacji na różnych platformach z wykorzystaniem różnego sprzętu, wprowadza liczne warstwy abstrakcji i gotowe klasy, dzięki czemu użytkownik musi jedynie zaimplementować własne kluczowe funkcjonalności programu (tzw. \emph{business logic}). Widoczny na schemacie ,,Kontroler Xbox'' jest popularnym urządzeniem HID, które wykorzystywane jest w grach komputerowych. Ponieważ także posiada parę dwuosiowych drążków, ale jest prostszy w obsłudze od pełnego nadajnika zdalnego sterowania dla BSP, jest zastosowany jako zastępczy kontroler do prowadzenia prostych testów nowych funkcji bez potrzeby uruchamiania programu symulacyjnego AP~SiTL. Podobnie jak w przypadku urządzeń wyświetlających, sterownik jest zaimplementowany przez zespół Unreal, konieczne było jedynie przypisanie odpowiednich funkcji do przycisków i analogowych osi urządzenia.
 
-Środowisko Unreal Engine oferuje bardzo dużo gotowych funkcji, ale przez to jego kod źródłowy jest bardzo obszerny i może być przytłaczający dla nowego użytkownika. Aby umożliwić pisanie funkcji oceniających operatora w językach innych niż C++ oraz rozwiązać wspomniany problem skomplikowania środowiska, ocena operatora także została wydzielona do osobnego procesu skomunikowanego przez protokół TCP/IP \begin{todo}przypis TCP\end{todo}.
+Środowisko Unreal Engine oferuje wiele gotowych funkcji, ale przez to jego kod źródłowy jest bardzo obszerny i może być przytłaczający dla nowego użytkownika. Aby umożliwić pisanie funkcji oceniających operatora w językach innych niż C++ oraz rozwiązać wspomniany problem skomplikowania środowiska, ocena operatora także została wydzielona do osobnego procesu.
 
-Wyniki działania wszystkich elementów programu zapisywane są do pliku tesktowego w formacie CSV \begin{todo}przypis CSV\end{todo}. Wadą takiego rozwiązania jest mało efektywne wykorzystanie przestrzeni dyskowej w porównaniu z zapisywaniem danych w formacie binarnym, w postaci w której znajdują się w pamięci operacyjnej podczas działania programu. Mimo to zastosowano ten format ponieważ plik danych jest zrozumiały dla człowiek bez stosowania specjalnego dekodera. Ponadto, obsługa plików tego typu jest zaimplementowana w licznych pakietach obliczeniowych m.~in. MATLAB lub Microsoft Excel. Biorąc pod uwagę że symulator ma być elastycznym narzędziem do wykonywania badań, głównym kryterium wyboru było zapewnienie czytelności i swobody wyboru nardzędzi dla użytkownika.
+Wyniki działania wszystkich elementów programu zapisywane są do pliku tesktowego w formacie CSV \begin{todo}przypis CSV\end{todo}. Wadą takiego rozwiązania jest mało efektywne wykorzystanie przestrzeni dyskowej w porównaniu z zapisywaniem danych w formacie binarnym, w postaci w której znajdują się w pamięci operacyjnej podczas działania programu. Mimo to zastosowano ten format ponieważ plik danych jest zrozumiały dla człowiek bez stosowania specjalnego dekodera. Ponadto, obsługa plików tego typu jest zaimplementowana w licznych pakietach obliczeniowych m.~in. MATLAB lub Microsoft Excel. Biorąc pod uwagę że symulator ma być elastycznym narzędziem do wykonywania badań, głównym kryterium wyboru było zapewnienie czytelności i swobody wyboru zędzi dla użytkownika.
 
 \subsection{Aplikacja wizualna}
 \begin{todo}
@@ -29,20 +30,79 @@ Jak wspomniano powyżej, cechą charakterystyczną przygotowanej wizualizacji je
 
 Po sformułowaniu wymagań i wstępnym wyborze rozwiązań, w pierwszej kolejności przygotowano prototyp sprawdzający możliwość połączenia oprogramowania ArduPilot z Unreal Engine. W tym celu konieczne było wykorzystanie biblioteki MAVLink \begin{todo}https://mavlink.io/\end{todo}, która jest wykorzystywana do komunikacji przez różne systemy BSP, w tym ArduPilot.
 
+Dane o stanie BSP są przesyłane do aplikacji wykorzystując protokół UDP/IP. Został wybrany ponieważ najważniejsze dla działania aplikacji jest otrzymywanie pakietów z minimalnym opóźnieniem. Problem kolejności otrzymywania danych jest rozwiązany przez znacznik czasu znajdujący się w wysłanej wiadomości MAVLink. Utrata pojedynczego pakietu nie jest dużym problemem, a wysłanie brakujących informacji, ale później sprawia że są bezużyteczne. Funkcje odczytujące wiadomości MAVLink zostały zaimplementowane w klasie \texttt{MavlinkTransformComponent}. Obiekt do którego dołączony jest ten komponent odpowiada za położenie lokalnego układu współrzędnych symulacji ArduPilot w wyświetlanej scenie. Protokół MAVLink wykorzystuje układ współrzędnych lokalnego horyzontu \emph{noth-east-down} w metrach. Oś Z tego układu skierowana jest zgodnie z kierunkiem i zwrotem siły ciążenia w locie lub symulacji, oś X prostopadle do niej w kierunku północnym, a Y prostopadle do pozostałych dwóch tak aby utworzyć prawoskrętny układ współrzędnych. Układ globalny oraz lokalne układy współrzędnych w Unreal Engine składają się z osi X skierowanej do przodu obiektu, osi Y prostopadle do niej w prawo, oraz Z do góry obiektu lub sceny, tworząc lewoskrętny układ współrzędnych. Wykorzystywaną jednostką odległości jest \emph{Unreal Unit}, który przy domyśnych ustawieniach jest tożsamy z centymetrami. Konwersja pomiędzy tymi układami współrzędnych jest trywialna, została przedstawiona w formie macierzowej w równaniu \ref{eq:konwersjauklady}.
+
+\begin{align}
+    \label{eq:konwersjauklady}
+    \mathbf{T}_{n}^{u} & \times \vec{p}_{n} = \vec{p}_{u}
+    \\
+    \mathbf{T}_{n}^{u} & =
+    \begin{bmatrix}
+        100 & 0 & 0 \\
+        0 & 100 & 0 \\
+        0 & 0 & -100
+    \end{bmatrix}
+\end{align}
+
+Mimo że układ współrzędnych w Unreal Engine jest lewoskrętny, wartości kątów orientacji obiektów są zdefiniowane w tej samej kolejności i o tych samych zwrotach jak w przypadku statków powietrznych. Zakładając zestaw dodatnich kątów orientacji przestrzennej, układ globalny jest przechylany ,,na prawe skrzydło'', pochylany ,,nosem do góry'' i odchylany zgodnie z kierunkiem ruchu wskazówek zegara patrząc od góry, aby otrzymać układ lokalny. Dzięki temu nie jest wymagana żadna konwersja orientacji przestrzennej, jedynie zmiana jej reprezentacji na kwaternion wykorzystując gotową funkcję.
+
+Stosując opisane powyżej konwencje, wiadomości MAVLink \texttt{LOCAL\_POSITION\_NED} oraz \texttt{ATTITUDE} są interpretowane w kontekście sceny Unreal Engine. Oprócz tego zaimplementowano także obsługę wiadomości \texttt{HEARTBEAT}, która zawiera informacje m.~in. o trybie lotu, oraz zgodnie ze specyfikacją protokołu powinna być wykorzystywana do oceny czy połączenie jest aktywne. Korzystając z tych trzech przykładów można łatwo dodać odczyt dodatkowych informacji o stanie statku powietrznego. W pierwszej kolejności należy odnaleźć interesujące dane w dokumentacji wykorzystywanego dialektu MAVLink \begin{todo}https://mavlink.io/en/messages/common.html\end{todo}, a następnie zaimplementować nowe przypadki w bloku \emph{switch-case} funkcji \texttt{UMavlinkTransformComponent::ParseMessage}.
+
+\subsubsection{Interpolacja stanu BSP}
 \begin{todo}
-    Zrzut ekranu z prymitywnego poziomu.
+    Algorytm interpolacji jak w Quake World, z wykresami ilustrującymi różne podejścia
+\end{todo}
+Dane z symulacji są wysyłane z domyślną częstotliwością 25 Hz, ale zmieniając parametry można zwiększyć tę częstotliwość do 40 Hz. Ponadto, z róznych powodów związanych z transmisją przez IP oraz przez radiomodem w przypadku rzeczywistego BSP, zdarza się że niewielka ilość wiadomości nie jest przesłana. Dla zachowania wrażenia płynnego ruchu, które jest szczególnie istotne w przypadku aplikacji rzeczywistości wirtualnej, obraz jest wyświetlany ze stałą częstotliwością 60 Hz. Aby uzyskać odpowiedni stan BSP dla każdej klatki obrazu, konieczne było zastosowanie dodatkowego algorytmu.
+
+W aplikacji wizualnej po otrzymaniu każdej wiadomości z symulacji, aktualizowana jest estymata czasu symulacji. Aby zmniejszyć wpływ pojedynczych pakietów z dużym opóźnieniem, różnica pomiędzy czasem liczonym w UE4 oraz czasem AP\_SiTL jest aktualizowana tylko o część różnicy pomiędzy nimi, w wyniku czego uzyskano filtr dolnoprzepustowy. Następnie otrzymane wiadomości są zapisywane do bufora, posortowane w kolejności w której zostały wysłane z symulacji. Aby zminimalizować konieczność prowadzenia ekstrapolacji, stany z bufora wyświetlane są z pewnym stałym opóźnieniem, które powinno odpowiadać przynajmniej podwójnej długości odstępu czasu pomiędzy kolejnymi odebranymi wiadomościami. Taka wielkość opóznienia powoduje, że stale można wykonać interpolację pomiędzy dwoma stanami nawet w przypadku utraty jednego pakietu IP.
+
+W momencie rysowania kolejnej klatki obrazu, najpierw obliczany jest moment w czasie symulacji dla którego należy obliczyć stan BSP. Następnie bufor jest przeszukiwany aby znaleźć najbliższy poprzedzający i następujący stan, pomiędzy którymi wykonywana jest interpolacja liniowa położenia i orientacji przestrzennej. W przypadku kiedy nastąpiła utrata większej liczby wiadomości i dostępny jest tylko stan poprzedzający żądany moment, konieczne jest wykonanie ekstrapolacji. Zastosowano ekstrapolację liniową dla pozycji na podstawie ostatniej znanej prędkości liniowej, oraz utrzymanie stałej wartości ostatniej znanej orientacji przestrzennej. Takie rozwiązanie naśladuje stałe wychylenie drążków sterowych dla wielowirnikowca którego układ automatycznego sterowania jest w trybie sterowania pozycją. Bardziej zaawansowane funkcje uwzględniające przyspieszenia liniowe i/lub prędkości kątowe okazały się nieodpowiednie dla obiektu którego regulator dąży do utrzymania stałych parametrów lotu.
+
+\subsubsection{Wygląd symulacji}
+\begin{todo}
+    Zrzut ekranu z prymitywnego poziomu, potem ładniejszego
+\end{todo}
+Poszczególne zadania do wykonania przez operatora zostały zaimplementowane jako różne ,,poziomy'' lub ,,mapy'' w Unreal Engine. Bez szczegółowej znajomości środowiska można łatwo zmieniać pozycję, orientację i rozmiar widocznych elementów wykorzystując tzw. \emph{gizmo} do edycji poziomu. Referencyjna trasa lotu jest zaimplementowana jako seria stycznych krzywych Beziera, których punkty kontrolne można edytować w ten sam sposób jak pozostałe obiekty.
+
+Przelot przez półprzezroczyste bramki widoczne na ilustracji \begin{todo}screen z bramkami\end{todo} jest warunkiem rozpoczęcia i poprawnego ukończenia zadania. Przelot przez zieloną bramkę startu rozpoczyna podejście do ćwiczenia, rozpoczyna pomiar czasu i komunikację z serwerem oceny. Przelot przez czerwoną bramkę końcową kończy próbę pod warunikiem uprzedniego przelecenia przez wszystkie niebieskie bramki kontrolne (jeśli występują). Dla wygody użytkownika przygotowującego zadania, do interfejsu edytora dodano własne przyciski któe pozwalają m.~in. na dodanie odpowiednich bramek na końcach trasy referencyjnej oraz automatyczne ustawienie bramek kontrolnych wzdłuż trasy.
+
+Sposób implementacji sterowania BSP pozwala na dodawanie różnych modeli graficznych poprzez rozszerzanie klasy \texttt{BaseDrone}. Do tak utworzonego ,,aktora'' można dodawać nowe elementy oraz np. zmieniać położenie kamery do lotu z perspektywy pierwszoosobowej \begin{todo}(FPV)\end{todo} w ten sam sposób jak edytuje się środowisko lotu.
+\begin{todo}
+    Screen z przestawianiem kamery w aktorze drona
+\end{todo}
+
+Ponieważ zakłada się stałe zmienianie zadań, aplikacja uruchamiania jest bezpośrednio z programu Unreal Editor. Z tego powodu graficzny interfejs uzytkownika w trakcie działania aplikacji jest ograniczony jedynie do funkcji informacyjnej. Po uruchomieniu aplikacji bez podłączoncyh okularów wirtualnej rzeczywistości, przy narożnikach okna rysowane są wskaźniki informujące o stanie połączenia z symulacją serwerem oceny, lub o trwającym zapisie danych. Aby zachować realizm symulacji i nie rozpraszać operatora nierzeczywistymi obiektami które unoszą się w powietrzu na skraju pola widzenia, te same wskaźniki zostały umieszczone na pulpicie umieszonym bezpośrednio przed operatorem.
+\begin{todo}
+    screen z GUI 2D; screen z panelem GUI VR
 \end{todo}
 
 \begin{todo}
-    Algorytm interpolacji jak w Quake World, z wykresami ilustrującymi różne podejścia
+    źródła zastosowanych modeli i tekstur - własne, Raczek od Melavio, Igor Samek, Starter Content
 \end{todo}
 
 \subsection{Serwer oceny}
 \begin{todo}
     Sposób komunikacji, dane dostępne do oceny, przykładowy serwer w kilku językach
 \end{todo}
+W przeciwieństwie do informacji o stanie BSP, dane na potrzeby oceny operatora nie muszą być dostarczone z najmniejszym możliwym opóźnieniem, natomiast dużo ważniejsza jest pewność dostarczenia kompletu pakietów. Z tego powodu do komunikacji z procesem oceniającym jakość pilotażu operatora, zastosowano protokół TCP/IP \begin{todo}(przypis co to)\end{todo}. Podczas rozwoju systemu, zauważono że wizualizacja jest znacznie częściej uruchamiana i zatrzymywana, więc przyjęto konwencję że program oceniający jest serwerem, a aplikacja wizualna łączącym się z nim klientem.
+
+Jak wspomniano powyżej w rozdziale \ref{sec:architektura}, kluczową cechą serwera oceny jest łatwość pisania własnych funkcji oceniających. Aby ułatwić obsługę przesyłanych wiadomości dla przyszłych użytkowników, dane wewnątrz pakietów TCP przesyłane są w formie tekstowej, w formacie JSON \begin{todo}(przypis)\end{todo}. Zastosowany format jest czytelny dla człowieka \begin{todo}\emph{human-readable}\end{todo}, a zastosowane nazwy sprawiają że można ją zrozumieć bez czytania zewnętrznej dokumentacji. Aby systematycznie i szczegółowo opisać format wiadomości, przygotowano specyfikację JSON Schema \begin{todo}(link)\end{todo}. To rozwiązanie umożliwia automatyczną walidację wiadomości przez komunikujące się programy, ale też przez odpowiedni edytor tekstu. Przykład automatycznego wskazywania błędów oraz wyświetlania wyjaśnień przez edytor został przedstawiony poniżej \begin{todo}Screen z VS Code\end{todo}.
 
 \subsection{Dokumentacja}
 \begin{todo}
     Instrukcja dla użytkownika i dla dewelopera, przykład tekstu w Markdown, sposób publikacji
+\end{todo}
+Aby ułatwić wykorzystanie systemu do własnych badań, przygotowano dokumentację dla użytkownika. Aktualna wersja jest publicznie dostępna w formie strony internetowej \begin{todo}https://wut-daas.github.io/uav-assess-vr/\end{todo}, jedynie w języku angielskim. Została podzielona na część podstawową \emph{User Guide} oraz zaawansowaną \emph{Developer Guide}. Zawiera listę niezbędnego oprogramowania, instrukcje jak pobrać kod źródłowy systemu oraz jak uruchomić i obsługiwać poszczególne aplikacje składowe. Opisano także sposób dodawania nowych ćwiczeń, modeli BSP, własnych funkcji oceniających i wprowadzania innych modyfikacji do działania systemu.
+\begin{todo}
+    screen z Introduction ze spisem treści
+\end{todo}
+
+Treść dokumentacji jest opracowana w formie plików tekstowych fomratu Markdown. Jedną z zalet takiego rozwiązania jest niezależność od używanego środowiska - systemu operacyjnego, edytora tekstu itp. Oprócz tego format jest bardzo popularny do opisu oprogramowania w formie plików \texttt{README.md} umieszczonych w repozytoriach Git, dzięki czemu jest duża szansa że będzie znajomy dla użytkowników.
+\begin{todo}
+    screen z Markdown z nagłówkiem, linkiem i obrazkiem
+\end{todo}
+
+Każdy może zaproponować swoje poprawki do dokumentacji korzystając z mechanizmu \emph{Pull Request} oferowanego na platformie GitHub. Zmiany mogą być zaakceptowane przez administratora repozytorium (tj. użytkownika z ZAiOL). Po akceptacji, pliki Markdown są przetwarzane na strony internetowe przez bibliotekę VuePress \begin{todo}(link)\end{todo}, a następnie automatycznie publikowane pod podanym adresem. Cały opisany proces odbywa się na zewnętrznych serwerach, dzięki czemu użytkownicy mogą dalej poprawiać dokumentację po zakończeniu pracy oryginalnego autora.
+\begin{todo}
+    Screen z przykładem Pull Request
 \end{todo}
