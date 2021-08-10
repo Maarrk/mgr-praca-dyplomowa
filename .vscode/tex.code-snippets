@@ -26,5 +26,11 @@
 		"prefix": ["TODO"],
 		"body": ["\\begin{todo}", "    $0", "\\end{todo}"],
 		"description": "Custom TODO environment for temporary notes"
+	},
+	"default figure": {
+		"scope": "latex",
+		"prefix": ["fig"],
+		"body": ["\\begin{figure}[!h]", "    \\caption{$3}", "    \\label{fig:$1}", "    \\centering \\includegraphics[width=$2\\linewidth]{$1.png}", "\\end{figure}"],
+		"description": "Figure setup for WUT-Thesis template"
 	}
 }
