@@ -4,6 +4,71 @@
     Odwołanie do poprzednich prac w których analizowano różne funkcje oceniające. Ogólne wskazanie jakości sterowania tak jak wykorzystywana jest dla automatycznych regulatorów. Opis funkcji oceniających wybranych jako najbardziej wartościowe.
 \end{todo}
 
+\subsection{Wstęp teoretyczny}
+\label{sec:ocena-teoria}
+W laboratorium symulatorów Wydziału Mechanicznego Energetyki i Lotnictwa, przed realizacją niniejszej pracy prowadzone były różne badania na temat wpływu czynnika ludzkiego na pilotaż statków powietrznych oraz prowadzenie innych pojazdów mechanicznych \begin{todo}coś z ZAiOL do zacytowania\end{todo}. Tematem jednej z prac dyplomowych opracowanych w laboratorium \begin{todo}cytuj P. Tomaszewską\end{todo} jest algorytm do obiektywnej oceny komfortu pasażerów podczas podróży środkiem transportu, uwzględniając ze szczególną uwagą parametry lotu śmigłowca. Podobnie jak w niniejszej pracy, celem badań było opracowanie i ocena jakości liczbowego kryterium które może zastąpić subiektywną ocenę przebiegu danego zjawiska. Mimo tego, pewne cechy algorytmu opracowanego we wspomnianej pracy sprawiły że zdecydowano o utworzeniu innych kryteriów oceny.
+
+Statek powietrzny wraz ze swoim operatorem można zamodelować jako układ ze sprzężeniem zwrotnym, w którym sterujący lotem człowiek jest regulatorem---jedynym lub jednym z wielu. Ponieważ w eksploatacji załogowych statków powietrznych, szczególnie śmigłowców, może wystąpić stan oscylacji wzbudzonych przez pilota\footnote{ang. \emph{Pilot-Induced Oscillation, (PIO)}}, modele tego typu są szczegółowo zbadane w literaturze \begin{todo}modele do PIO, np. z wykładu SLiK\end{todo}. Taka reprezentacja interfejsu człowiek---maszyna sugeruje możliwość zastosowania narzędzi matematycznych opracowanych w celu oceny automatycznych układów regulacji do oceny sterowania wykonywanego przez operatora.
+
+\begin{todo}
+    Schemat układu ze sprzężeniem  zwrotnym w którym operator jest regulatorem
+\end{todo}
+
+Problem optymalizacji sterowania można abstrakcyjnie przedstawić jako minimalizację odpowiednio zdefiniowanej wielkości zwanej ,,kosztem'', która ma tym mniejszą wartość, im lepsza jest jakość sterowania. Ogólnie funkcjonał kosztu można podzielić na koszt końcowy\footnote{ang. \emph{endpoint cost}} oraz koszt bieżący\footnote{ang. \emph{running cost}} \begin{todo}źródło https://www.worldcat.org/oclc/625106088 \end{todo}. Drugi z nich w ogólnej postaci jest całką w czasie odpowiedniej funkcji $ F $ zależnej od stanu obiektu $ x $ oraz sterowania $ u $. Ogólną postać tak zdefiniowanego kosztu przedstawia równanie \ref{eq:pontryagin}. Ponieważ oceniany jest proces trwający w czasie, dużo większe znaczenie przypisano do określenia kosztu bieżącego.
+
+\begin{align}
+    \label{eq:pontryagin}
+    % https://en.wikipedia.org/wiki/Optimal_control#General_method
+    J[\textbf{x}(\cdot), \textbf{u}(\cdot), t_0, t_f] :=E\,[\,\textbf{x}(t_0),t_0,\textbf{x}(t_f),t_f\,] + \int\limits_{t_0}^{t_f} F\,[\,\textbf{x}(t),\textbf{u}(t),t\,] \,\operatorname{d}t
+\end{align}
+
+W literaturze na temat sterowania optymalnego wykorzystywane są różne liczbowe wskaźniki jakości regulacji, których sensem jest premiowanie pożądanych właściwości układu. W tabeli \begin{todo}ref\end{todo} zebrano niektóre ze stosowanych kryteriów wraz z ich skrótowymi nazwami w języku angielskim, oraz interpretacją ich wartości w kontekście oceny właściwości regulatora. Warto zwrócić uwagę, że wszystkie funkcje które są całkowane w poniższych wzorach są nieujemne pod warunkiem że parametry lotu należą do zbioru liczb rzeczywistych, co jest zawsze spełnione w opracowywanym systemie. Sprawia to, że w miarę upływu czasu miara jakości regulacji może jedynie narastać lub pozostawać na stałym poziomie. Ta wspólna własność powoduje, że oprócz opisanych poniżej kryteriów premiowana jest szybkość regulacji, co w kontekście oceny operatora należy interpretować jako najkrótszy czas wykonywania ćwiczenia.
+
+\begin{todo}
+    Tabelka ze wskaźnikami IAE, ITAE etc.
+    % http://www.ece.ualberta.ca/~marquez/journal_publications_files/papers/tan_cis_04.pdf
+    % https://pl.wikipedia.org/wiki/Kryterium_sterowania#Zestawienie_indeks%C3%B3w_jako%C5%9Bci_sterowania
+\end{todo}
+
+Duża część funkcji opisanych w tabeli jest przeznaczona do zastosowania dla układu o jednym stopniu swobody, w którym uchyb jest wielkością skalarną. W przypadku oceny różnych parametrów lotu, konieczne staje się łączenie kilku wskaźników obliczonych na podstawie różnych wielkości. Aby zapewnić łatwość interpretacji wyników, zbiorcza ocena jest obliczana jako kombinacja liniowa poszczególnych wskaźników jakości sterowania. Współczynniki poszczególnych składników mają realizować jednocześnie zadanie normalizacji wartości do zbliżonego przedziału wartości, a także umożliwiać dostosowywanie wpływu poszczególnych błędów na ogólną ocenę.
+
+\subsection{Wybór konkretnych kryteriów}
+Opracowany system umożliwia użytkownikowi zastosowanie dowolnego kryterium oceny, pod warunkiem że korzysta z  danych wysyłanych z aplikacji graficznej oraz jest możliwe do implementacji w wybranym przez siebie środowisku programowania. Przykładowo dla oceny jakości sterowania szybowcem, można oprzeć ocenę na wysokości lotu, lub po odpowiedniej modyfikacji aplikacji (por. \ref{sec:komunikacja}), na przykład o wartość prądu elektrycznego pobieranego przez zespół napędowy.
+
+W niniejszej pracy, system stosowany jest jako narzędzie pomocnicze w przygotowaniu kandydatów do egzaminu praktycznego w celu uzyskania Świadectwa Kwalifikacji Presonelu Lotniczego z uprawnieniem podstawowym UAVO. Obecnie, egzamin praktyczny jest wymagany jedynie dla operatorów planujących loty w kategorii szczególnej\cite{ulc2019}, natomiast ogólne zasady lotu i kompetencje pozostają podobne. Ponadto uwarunkowania epidemiologiczne panujące od wprowadzenia nowych przepisów z końcem roku 2020, powodują trudności w organizacji egzaminów praktycznych. Z tych powodów, zadania będą przygotowywane dla egzaminów prowadzonych na podstawie wycofanych przepisów krajowych, a nie obowiązujących przepisów europejskich. Znaczna większość operacji BSP odbywa się na wielowirnikowcach --- dawna kategoria UAVO(MR), obecnie NSTS-02 oraz NSTS-06. Z tego powodu w następujących rozważaniach będzie uwzględniony tylko ten typ statku powietrznego.
+
+% źródło: http://ulc.gov.pl/_download/personel_lotniczy/licencjonowanie/biuletyn_1_01_08_2014.pdf
+Zadania w zakresie ,,Wykonywanie czynności lotniczych'' egzaminu praktycznego na uprawnienia operatora BSP zostały szczegółowo przedstawione w rozdziale \ref{sec:zadania}. Pomijając start i lądowanie, wszystkie czynności związane ze sterowaniem BSP można opisać wykorzystując następujące sformułowania:
+\begin{itemize}
+    \item przelot wzdłuż zadanej trasy
+    \item utrzymanie zadanej wysokości
+    \item utrzymanie zadanego położenia
+    \item sterowanie w osi odchylenia
+\end{itemize}
+Wszystkie powyższe kryteria z wyjątkiem ostatniego można sformułować jako minimalizacja odległości pomiędzy BSP a pewną wzorcową krzywą opisującą trasę przeloto, lub punktem w przypadku zawisu. Analogicznie, wymogi dla sterowania kierunkowego można opisać jako minimalizację kąta ślizgu dla zadań związanych z przemieszczaniem BSP. W przypadku zawisu jako minimalizację kąta pomiędzy płaszczyzną $ XZ $ BSP, a zadanym przez egzaminatora kierunkiem.
+
+Zasady egzaminu praktycznego nie zawierają konkretnych wartości tolerancji dla poszczególnych parametrów lotu. Zadaniem egzaminatora Lotniczej Komisji Egzaminacyjnej jest uznanie czy zaprezentowany poziom umiejętności jest wystarczający do bezpiecznego prowadzenia lotów BSP. Wśród wyszczególnionych kryteriów niezaliczenia egzaminu praktycznego, stosowane są zwroty odnoszące się do ,,utraty kontroli'', ,,braku umiejętności pilotażu'', oraz m. in. ,,zagrażania bezpieczeństwu''. Egzamin praktyczny nie ma przypisanej skali ocen, a zaledwie jeden z dwóch rezultatów --- pozytywny lub negatywny. Symboliczna interpretacja kryteriów egzaminu w kontekście wzoru \ref{eq:pontryagin} mogłaby wyglądać w sposób przedstawiony we wzorze \ref{eq:egzamin}, gdzie wartości logiczne $ A $, $ B $, etc. oznaczają wystąpienie danego typu zdarzenia niebezpiecznego lub wskazującego na utratę sterowania.
+\begin{align}
+    \label{eq:egzamin}
+    E\left( \vec{x}(t) \right) &=
+    \left\{
+        \begin{array}{ll}
+            \infty \mbox{ jeżeli } A \lor B \lor C \dots \\
+            0 \mbox{ jeżeli } \neg ( A \lor B \lor C \dots)
+        \end{array}
+    \right.
+    \\
+    F & \equiv 0
+\end{align}
+
+Aby opracowany system był użyteczny do szkolenia, oraz umożliwiał porównanie umiejętności pomiędzy poszczególnymi operatorami, konieczne jest wprowadzenie większej rozdzielczości oceny niż tylko dwa skrajnie różne wyniki. Mimo to, pożądane jest aby zastosowana metryka chociaż częściowo oddawała charakter oceniania na egzaminie. W przypadku jeśli w locie egzaminacyjnym występują drobne pomyłki, można uzyskać wynik pozytywny, natomiast pojedynczy poważny błąd zagrażający bezpieczeństwu ma wagę decydującą o zakończeniu z wynikiem negatywnym. Podobną, choć bardziej umiarkowaną charakterystykę mocnego penalizowania dużych odchyłek można osiągnąć stosując całkę z kwadratu błędu, lub innej funkcji błędu której pochodna stale rośnie. W przypadku pewnych jednorazowych zdarzeń, jak na przykład kolizja z przeszkodą, egzamin praktyczny byłby przerwany. Także w tym obszarze wprowadza się bardziej stopniowaną ocenę, do każdego typu zdarzenia $ i $ przypisując wartość kary $ k $. Dzięki temu, w przypadku zadań wyjątkowo trudnych pod tym względem, można nadal porównywać podejścia między sobą na podstawie liczby wystąpienia zdarzeń, oznaczonej $ n $. Postać takiej funkcji kosztu oceniającej na podstawie $ K $ typów zdarzeń oraz $ L $ parametrów lotu została przedstawiona we wzorze \ref{eq:rozdzielczosc}. Wartości $ l $ to wspomniane w podrozdziale \ref{sec:ocena-teoria} wagi poszczególnych parametrów.
+\begin{align}
+    \label{eq:rozdzielczosc}
+    E[ \vec{x}(t) ] &= \sum_{i=1}^{K} k_i \cdot n_i
+    \\
+    F[ \vec{x}(t) ] &= \sum_{j=1}^{L} l_j \cdot \int_{t_0}^{t_k} [ x_j(t) - x_{ref_j}(t) ]^2 \operatorname{d}t
+\end{align}
+
 \begin{todo}
     Specjalnie zrobić przykładowe loty bardzo dobre i bardzo słabe żeby wskazać że te algorytmy oceny działają.
 \end{todo}

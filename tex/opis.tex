@@ -27,6 +27,7 @@ Wyniki działania wszystkich elementów programu zapisywane są do pliku tekstow
 Jak wspomniano powyżej, cechą charakterystyczną przygotowanej wizualizacji jest wykorzystanie silnika Unreal Engine. Jedną z zalet jest możliwość modyfikowania środowiska do własnych zastosowań, co jest ułatwione przez dostępność kodu źródłowego całego silnika.
 
 \subsubsection{Komunikacja z symulacją BSP}
+\label{sec:komunikacja}
 
 Po sformułowaniu wymagań i wstępnym wyborze rozwiązań, w pierwszej kolejności przygotowano prototyp sprawdzający możliwość połączenia oprogramowania ArduPilot z Unreal Engine. W tym celu konieczne było wykorzystanie biblioteki MAVLink \footnote{\url{https://mavlink.io/}}, która jest wykorzystywana do komunikacji przez różne systemy BSP, w tym ArduPilot.
 
@@ -151,7 +152,4 @@ Treść dokumentacji jest opracowana w formie plików tekstowych formatu Markdow
     \centering \includegraphics[width=\linewidth]{markdown.png}
 \end{figure}
 
-Każdy może zaproponować swoje poprawki do dokumentacji korzystając z mechanizmu \emph{Pull Request} oferowanego na platformie GitHub. Zmiany mogą być zaakceptowane przez administratora repozytorium (tj. użytkownika z ZAiOL). Po akceptacji, pliki Markdown są przetwarzane na strony internetowe przez bibliotekę VuePress\footnote{\url{https://vuepress.vuejs.org/}}, a następnie automatycznie publikowane pod podanym adresem. Cały opisany proces odbywa się automatycznie na zewnętrznych serwerach, dzięki czemu użytkownicy mogą dalej poprawiać dokumentację po zakończeniu pracy oryginalnego autora.
-\begin{todo}
-    Screen z przykładem Pull Request
-\end{todo}
+Każdy może zaproponować swoje poprawki do dokumentacji korzystając z mechanizmu \emph{Pull Request} oferowanego na platformie GitHub. Ten termin można przetłumaczyć jako ,,prośba o włączenie do repozytorium'', i jest powszechnie stosowany w świecie wolnego oprogramowania. Zaproponowane w ten sposób zmiany mogą być zaakceptowane przez administratora repozytorium, w tym przypadku przez członka zespołu Zakładu Automatyki i Osprzętu Lotniczego. Po akceptacji, pliki Markdown są przetwarzane na strony internetowe przez bibliotekę VuePress\footnote{\url{https://vuepress.vuejs.org/}}, a następnie automatycznie publikowane pod podanym adresem. Cały opisany proces odbywa się automatycznie na zewnętrznych serwerach, dzięki czemu użytkownicy mogą dalej poprawiać dokumentację po zakończeniu pracy oryginalnego autora.
