@@ -21,8 +21,14 @@
 \addbibresource{bibliografia.bib} % Plik .bib z bibliografią
 
 \usepackage{verbatim} % Definiuje środowisko comment
-% \newenvironment{todo} {\color{magenta} \bfseries} {} % Formatowanie tymczasowych notatek
-\newenvironment{todo} {\comment} {\endcomment} % Ukrycie wszystkich tymczasowych notatek
+\newenvironment{todo} {\color{magenta} \bfseries} {} % Formatowanie tymczasowych notatek
+% \newenvironment{todo} {\comment} {\endcomment} % Ukrycie wszystkich tymczasowych notatek
+
+\newcommand{\spheading}[2][10em]{ % Obrócony tekst w nagłówkach tabel
+    % \spheading[<width>]{<stuff>}
+    \rotatebox{90}{\parbox{#1}{\raggedright #2}}}
+
+\newcommand{\tick}{$ \checkmark $} % Skrót dla checkmark z amssymbol
 
 \begin{document}
 
@@ -62,7 +68,7 @@ W celu walidacji przygotowanego rozwiązania wykonano serię ćwiczeń symulują
 % Streszczenie po angielsku
 %--------------------------------------
 \newpage
-\abstract The development of simulation technology and ever-groving digital literacy are causing adoption of digital learning in new areas. As part of a recent change in regulations pertaining to unmanned aerial vehicles, self-study using online services was introduced as the only training method for some types of qualifications. This thesis aims to create a unviersal environment to perform an objective and quantative assessment of piloting skills. A flight simulator with well-defined grading criteria with live feedback to the operator, may bridge the gap between current text-based training and partially deprecated hands-on training under direct instructor supervision.
+\abstract The development of simulation technology and ever-groving digital literacy are causing adoption of digital learning in new areas. As part of a recent change in regulations pertaining to unmanned aerial vehicles, self-study using online services was introduced as the only training method for some types of qualifications. This thesis aims to create a universal environment to perform an objective and quantative assessment of piloting skills. A flight simulator with well-defined grading criteria with live feedback to the operator, may bridge the gap between current text-based training and partially deprecated hands-on training under direct instructor supervision.
 
 The created system includes a visual application based on virtual reality headset, and a separated appliction for live piloting quality assessment. Communication between these and external modules has been formalised according to publicly available standards, and a detailed user guide was published. A key design objective for all components of the system was the ability to modify it for other research in related subjects.
 
@@ -96,7 +102,7 @@ In order to validate the developed solution, a series of excercises simulating f
 \input{tex/wymagania}
 \input{tex/opis}
 \input{tex/ocena}
-% \input{tex/badania}
+\input{tex/badania}
 \input{tex/plan-rozwoju}
 \input{tex/podsumowanie}
 
@@ -124,6 +130,11 @@ In order to validate the developed solution, a series of excercises simulating f
 % //AB
 \vspace{0.8cm}
 \acronymlist
+
+\begin{todo}
+    Zebrać symbole matematyczne występujące we wzorach
+\end{todo}
+
 \acronym{AR}{Augmented Reality}
 \acronym{BSP}{Bezzałogowy Statek Powietrzny}
 \acronym{CSV}{Comma-Separated Values}
@@ -132,6 +143,7 @@ In order to validate the developed solution, a series of excercises simulating f
 \acronym{JSON}{JavaScript Object Notation}
 \acronym{TCP}{Transmission Control Protocol}
 \acronym{VR}{Virtual Reality}
+\acronym{VTOL}{Vertical Takeoff and Landing}
 
 \listoffigurestoc     % Spis rysunków.
 \vspace{1cm}          % vertical space
