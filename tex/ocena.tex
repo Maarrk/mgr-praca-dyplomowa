@@ -52,9 +52,9 @@ Próba zaprogramowania wszystkich niuansów oceny w celu zastąpienia egzaminato
 Statek powietrzny wraz ze swoim operatorem można zamodelować jako układ ze sprzężeniem zwrotnym, w którym sterujący lotem człowiek jest regulatorem---jedynym, jak na rysunku \ref{fig:modelpilota}, lub jednym z wielu. Ponieważ w eksploatacji załogowych statków powietrznych, szczególnie śmigłowców, wpływ reakcji pilota ma duże znaczenie dla bezpieczeństwa i stabilności pewnych stanów lotu, modele tego typu są szczegółowo zbadane w literaturze\cite{roskam1998}. Taka reprezentacja interfejsu człowiek-maszyna sugeruje możliwość zastosowania narzędzi matematycznych opracowanych w celu oceny automatycznych układów regulacji do oceny sterowania wykonywanego przez operatora.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=0.8\linewidth]{modelpilota.pdf}
     \caption{Przedstawienie pilota jako regulatora dla statku powietrznego}
     \label{fig:modelpilota}
-    \centering \includegraphics[width=0.8\linewidth]{modelpilota.pdf}
 \end{figure}
 
 Problem optymalizacji sterowania można opisać matematyczne jako minimalizację odpowiednio zdefiniowanej wielkości zwanej ,,kosztem'', która ma tym mniejszą wartość, im lepsza jest jakość sterowania. W ogólnym przypadku, zapis przypadków dla różnych sterowników może przyjąć formę funkcjonału z równania \ref{eq:pontryagin} \cite{ross2009}. Został podzielony na koszt końcowy\footnote{ang. \emph{endpoint cost}} oraz koszt bieżący\footnote{ang. \emph{running cost}}. Drugi z nich w ogólnej postaci jest całką w czasie odpowiedniej funkcji $ F $ zależnej od stanu obiektu $ x $ oraz sterowania $ u $. Ponieważ w przypadku lotu BSP oceniany jest proces trwający w czasie, dużo większe znaczenie przypisano do określenia kosztu bieżącego.
@@ -119,9 +119,9 @@ Aby opracowany system był użyteczny do szkolenia, oraz umożliwiał porównani
 Spośród zadań części praktycznej zebranych w tabeli \ref{tab:ocena-egzamin}, do szczegółowej oceny liczbowej wybrano te które mają oceniane kilka parametrów oraz nie polegają na interakcji z podłożem. Ćwiczenia które spełniają te warunki to lot po prostej, lot w zakręcie oraz zawis. Mozna dla nich sformułować uchyb jako odległość $ \delta_{A,B} $ pomiędzy pozycją BSP $ P $ a pewną wzorcową krzywą $ s_{ref} $ opisującą trasę przelotu, lub punktem $ P_{ref} $ w przypadku zawisu. Analogicznie, wymogi dla sterowania kierunkowego w zadaniach związanych z ruchem można opisać jako minimalizację kąta pomiędzy kierunkiem przednim ramy BSP oraz kątem drogi $ \psi_{KD} $. W powietrzu nieruchomym względem podłoża, ten kąt byłby równy kątowi ślizgu. Dla zawisu jest oceniana minimalizacja różnicy pomiędzy kątem odchylenia BSP $ \psi $, a zadanym przez egzaminatora kierunkiem $ \psi_{ref} $. Rysunek \ref{fig:definicjebledu} zawiera graficzne przedstawienie wprowadzonych tu definicji. Zawis wykonywany jest przez określony, stały odcinek czasu. Aby większa długość wykonywania lotu po prostej nie wpływała negatywnie na wskaźnik oceny, wyniki całkowania są dzielone przez czas wykonywania ćwiczenia. W przypadku prowadzenia BSP w zakręcie, ćwiczenie należy wykonywać w dość szybkim locie, dlatego wartość celowo nie jest uśredniana. Podsumowanie kryteriów dla zadań w typowej kolejności wykonywania ich w trakcie egzaminu przedstawiono w tabeli \ref{tab:ocena-funkcje}.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=0.8\linewidth]{definicjebledu.pdf}
     \caption{Szkic ilustrujący wielkości wykorzystywane w liczbowych wskażnikach oceny}
     \label{fig:definicjebledu}
-    \centering \includegraphics[width=0.8\linewidth]{definicjebledu.pdf}
 \end{figure}
 
 \begin{table}[!h] \centering

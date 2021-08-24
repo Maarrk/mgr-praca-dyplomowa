@@ -12,9 +12,9 @@ W całym rozdziale najpierw dawać plan co chcemy osiągnąć abstrakcyjny, a po
 Aby spełnić wszystkie postawione powyżej wymagania, zdecydowano podzielić system na kilka osobnych aplikacji, pomiędzy którymi komunikacja jest zrealizowana za pomocą adekwatnych protokołów sieciowych lub plików. Poszczególne moduły oraz połączenia pomiędzy nimi przedstawiono na rysunku \ref{fig:architektura}. Dzięki takiemu rozwiązaniu, można było wykorzystać dostępne oprogramowanie do symulacji dynamiki oraz kompletne oprogramowanie autopilota stosowane na rzeczywistych BSP. Dużą zaletą zastosowania ArduPilot SiTL\cite{soft:sitl} jest format danych w którym przesyłane są informacje o stanie BSP. Ponieważ jest identyczny z komunikacją wysyłaną z rzeczywistego BSP kontrolowanego z wykorzystaniem \emph{firmware} ArduPilot, można wykorzystywać taki sam program do łączenia z symulacją jak i fizycznym BSP w trybie rzeczywistości rozszerzonej (AR).
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=0.8\linewidth]{architektura.pdf}
     \caption{Schemat elementów systemu}
     \label{fig:architektura}
-    \centering \includegraphics[width=0.8\linewidth]{architektura.pdf}
 \end{figure}
 
 Aby móc stosować jedną aplikację zarówno z goglami VR oraz AR, wizualizacja została przygotowana z wykorzystaniem Unreal Engine 4\cite{soft:ue4}. To środowisko jest przykładem tzw. ,,silnika'' gier komputerowych. Aby umożliwić uruchamianie tej samej aplikacji na różnych platformach z wykorzystaniem różnego sprzętu, wprowadza liczne warstwy abstrakcji i gotowe klasy, dzięki czemu użytkownik musi jedynie zaimplementować własne kluczowe funkcjonalności programu (tzw. \emph{business logic}). Widoczny na schemacie ,,Kontroler Xbox'' jest popularnym urządzeniem, które wykorzystywane jest w grach komputerowych. Ponieważ także posiada parę dwuosiowych drążków, ale jest prostszy w obsłudze od pełnego nadajnika zdalnego sterowania dla BSP, jest zastosowany jako zastępczy kontroler do prowadzenia prostych testów nowych funkcji bez potrzeby uruchamiania programu symulacyjnego AP~SiTL. Podobnie jak w przypadku urządzeń wyświetlających, sterownik jest zaimplementowany przez zespół Unreal, konieczne było jedynie przypisanie odpowiednich funkcji do przycisków i analogowych osi urządzenia.
@@ -63,9 +63,9 @@ W aplikacji wizualnej po otrzymaniu każdej wiadomości z symulacji, aktualizowa
 Następnie otrzymane wiadomości są zapisywane do bufora, posortowane w kolejności w której zostały wysłane z symulacji. Aby zminimalizować konieczność prowadzenia ekstrapolacji, stany z bufora wyświetlane są z pewnym stałym opóźnieniem $ T_d $, które powinno odpowiadać przynajmniej podwójnej długości odstępu czasu pomiędzy kolejnymi odebranymi wiadomościami $ T_f $. Taka wielkość opóznienia powoduje, że stale można wykonać interpolację pomiędzy dwoma stanami nawet w przypadku utraty jednego pakietu IP. Ta sytuacja została przedstawiona na rysunku \ref{fig:interpolacja}. Prezentowany jest stan interpolacji dla przykładowego parametru $ f(t) $ w czasie $ t_1 $, kiedy pakiet $ p_4 $ nie dotarł poprawnie, ale dzięki opóźnieniu o $ T_d $, $ p_5 $ już jest dostępny.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{interpolacja.pdf}
     \caption{Diagram prezentujący algorytm interpolacji}
     \label{fig:interpolacja}
-    \centering \includegraphics[width=\linewidth]{interpolacja.pdf}
 \end{figure}
 
 W momencie rysowania kolejnej klatki obrazu, najpierw obliczany jest moment w czasie symulacji dla którego należy obliczyć stan BSP. Następnie bufor jest przeszukiwany aby znaleźć najbliższy poprzedzający i następujący stan, pomiędzy którymi wykonywana jest interpolacja liniowa położenia i orientacji przestrzennej. W przypadku kiedy nastąpiła utrata większej liczby wiadomości i dostępny jest tylko stan poprzedzający żądany moment, konieczne jest wykonanie ekstrapolacji. Zastosowano ekstrapolację liniową dla pozycji na podstawie ostatniej znanej prędkości liniowej, oraz utrzymanie stałej wartości ostatniej znanej orientacji przestrzennej. Takie rozwiązanie naśladuje stałe wychylenie drążków sterowych dla wielowirnikowca którego układ automatycznego sterowania jest w trybie sterowania pozycją. Bardziej zaawansowane funkcje uwzględniające przyspieszenia liniowe i/lub prędkości kątowe okazały się nieodpowiednie dla obiektu którego regulator dąży do utrzymania stałych parametrów lotu.
@@ -74,33 +74,33 @@ W momencie rysowania kolejnej klatki obrazu, najpierw obliczany jest moment w cz
 Poszczególne zadania do wykonania przez operatora zostały zaimplementowane jako różne ,,poziomy'' lub ,,mapy'' w Unreal Engine. Bez szczegółowej znajomości środowiska można łatwo zmieniać pozycję, orientację i rozmiar widocznych elementów. Referencyjna trasa lotu jest zaimplementowana jako seria stycznych do siebie krzywych Beziera, których punkty kontrolne można przemieszczać w ten sam sposób jak pozostałe obiekty.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{basicflight.png}
     \caption{Początkowy wygląd aplikacji na etapie testów komunikacji}
     \label{fig:basicflight}
-    \centering \includegraphics[width=\linewidth]{basicflight.png}
 \end{figure}
 
 Przelot przez półprzezroczyste bramki w kształcie kół o promieniu 1~m widoczne na rysunku \ref{fig:slalom}, jest warunkiem rozpoczęcia i poprawnego ukończenia zadania. Przelot przez zieloną bramkę startu rozpoczyna podejście do ćwiczenia, uruchamia pomiar czasu i komunikację z serwerem oceny. Przelot przez czerwoną bramkę końcową kończy próbę pod warunikiem uprzedniego przelecenia przez wszystkie niebieskie bramki kontrolne, jeśli występują. Dla wygody użytkownika przygotowującego zadania, do interfejsu edytora dodano własne przyciski które pozwalają m.~in. na dodanie odpowiednich bramek na końcach trasy referencyjnej oraz automatyczne ustawienie bramek kontrolnych wzdłuż trasy.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{slalom.png}
     \caption{Zadanie slalom, w prawym dolnym rogu widoczny podgląd kamery FPV}
     \label{fig:slalom}
-    \centering \includegraphics[width=\linewidth]{slalom.png}
 \end{figure}
 
 Sposób implementacji sterowania BSP pozwala na dodawanie różnych modeli graficznych poprzez rozszerzanie klasy \emph{BaseDrone}. Do tak utworzonego obiektu można dodawać nowe elementy graficzne, dodatkowe zachowania i inne modyfikacje. Użyteczną funkcją po dodaniu nowego modelu jest zmiana położenia kamery do lotu z perspektywy pierwszoosobowej (FPV) w ten sam sposób jak edytuje się środowisko lotu, co przedstawiono na rysunku \ref{fig:edycja-kamery}
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{edycja-kamery.png}
     \caption{Edycja pochylenia kamery zamontowanej na pokładzie BSP}
     \label{fig:edycja-kamery}
-    \centering \includegraphics[width=\linewidth]{edycja-kamery.png}
 \end{figure}
 
 Ponieważ zakłada się stałe zmienianie zadań, aplikacja uruchamiania jest bezpośrednio z programu Unreal Editor. Z tego powodu graficzny interfejs uzytkownika w trakcie działania aplikacji jest ograniczony jedynie do funkcji informacyjnej. Po uruchomieniu aplikacji bez podłączonych okularów wirtualnej rzeczywistości, przy narożnikach okna rysowane są wskaźniki informujące o stanie połączenia z symulacją serwerem oceny, lub o trwającym zapisie danych. Aby zachować realizm symulacji i nie rozpraszać operatora nierzeczywistymi obiektami które unoszą się w powietrzu na skraju pola widzenia, te same wskaźniki zostały umieszczone na pulpicie umieszonym bezpośrednio przed operatorem.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{gui-2d.png}
     \caption{Interfejs graficzny wyświetlany na ekranie komputera}
     \label{fig:gui-2d}
-    \centering \includegraphics[width=\linewidth]{gui-2d.png}
 \end{figure}
 
 \begin{todo}
@@ -117,9 +117,9 @@ W przeciwieństwie do informacji o stanie BSP, dane na potrzeby oceny operatora 
 Jak wspomniano powyżej w rozdziale \ref{sec:architektura}, kluczową cechą serwera oceny jest łatwość pisania własnych funkcji oceniających. Aby ułatwić obsługę przesyłanych wiadomości dla przyszłych użytkowników, dane wewnątrz pakietów TCP przesyłane są w formie tekstowej, w formacie JSON\cite{json2017}. Taka reprezentacja danych jest czytelna dla człowieka, a zastosowane nazwy sprawiają że można ją zrozumieć bez czytania zewnętrznej dokumentacji. Aby systematycznie i szczegółowo opisać format wiadomości, przygotowano specyfikację JSON Schema\cite{jsonschema2020}. To rozwiązanie umożliwia automatyczną walidację wiadomości przez komunikujące się programy, ale też przez odpowiedni edytor tekstu. Przykład automatycznego wskazywania błędów oraz wyświetlania objaśnień przez edytor został przedstawiony na rysunku \ref{fig:schema-vscode}.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{schema-vscode.png}
     \caption{Przykład dokumentacji i poprawy błędów wiadomości JSON w edytorze VS Code}
     \label{fig:schema-vscode}
-    \centering \includegraphics[width=\linewidth]{schema-vscode.png}
 \end{figure}
 
 Zestaw informacji dostępnych do oceny opratora można odczytać ze specyfikacji formatu, w obiekcie \emph{simulationMessage}. W każdej wiadomości z danymi wysyłana jest nazwa profilu operatora, nazwa obecnie wykonywanego ćwiczenia oraz dodatkowy tekst informacyjny. Oprócz tego w polu \emph{frames} przesyłana jest lista ,,klatek'' symulacji, które odpowiadają klatkom obrazu rysowanym na ekranie. Każda klatka zawiera następujące informacje:
@@ -140,17 +140,17 @@ Poprawnie działający serwer oceny powinien na każdą otrzymaną wiadomość o
 Aby ułatwić wykorzystanie systemu do własnych badań, przygotowano dokumentację dla użytkownika. Aktualna wersja jest publicznie dostępna w formie strony internetowej\cite{uavdocs2021}, obecnie jedynie w języku angielskim. Została podzielona na część podstawową \emph{User Guide} oraz zaawansowaną \emph{Developer Guide}. Zawiera listę niezbędnego oprogramowania, instrukcje jak pobrać kod źródłowy systemu oraz jak uruchomić i obsługiwać poszczególne aplikacje składowe. Opisano także sposób dodawania nowych ćwiczeń, modeli BSP, własnych funkcji oceniających i wprowadzania innych modyfikacji do działania systemu.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=0.8\linewidth]{dokumentacja-getting-started.png}
     \caption{Przykład strony z dokumentacji podstawowej}
     \label{fig:dokumentacja-getting-started}
-    \centering \includegraphics[width=0.8\linewidth]{dokumentacja-getting-started.png}
 \end{figure}
 
 Treść dokumentacji jest opracowana w formie plików tekstowych formatu Markdown\cite{rfc7763}. Jedną z zalet takiego rozwiązania jest niezależność od używanego środowiska - systemu operacyjnego, edytora tekstu itp. Oprócz tego format jest bardzo popularny do opisu oprogramowania w formie plików \emph{README.md} umieszczonych w repozytoriach Git, dzięki czemu jest duża szansa że będzie znajomy dla użytkowników. Przykład demonstrujący tekst źródłowy m.~in. dla nagłówków, obrazów oraz treści komend wpisywanych do tekstowego terminala jest widoczny na rysunku \ref{fig:markdown}.
 
 \begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{markdown.png}
     \caption{Fragment pliku źródłowego Markdown dokumentacji użytkownika}
     \label{fig:markdown}
-    \centering \includegraphics[width=\linewidth]{markdown.png}
 \end{figure}
 
 Każdy może zaproponować swoje poprawki do dokumentacji korzystając z mechanizmu \emph{Pull Request} oferowanego na platformie GitHub\cite{soft:github}. Ten termin można przetłumaczyć jako ,,prośba o włączenie do repozytorium'', i jest powszechnie stosowany w środowisku wolnego oprogramowania. Zaproponowane w ten sposób zmiany mogą być zaakceptowane przez administratora repozytorium, w tym przypadku przez członka zespołu Zakładu Automatyki i Osprzętu Lotniczego. Po akceptacji, pliki Markdown są przetwarzane na strony internetowe przez bibliotekę VuePress\cite{soft:vuepress}, a następnie automatycznie publikowane pod podanym adresem. Cały opisany proces odbywa się automatycznie na zewnętrznych serwerach, dzięki czemu użytkownicy mogą dalej poprawiać dokumentację po zakończeniu pracy oryginalnego autora.
