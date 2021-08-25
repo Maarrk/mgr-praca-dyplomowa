@@ -95,7 +95,7 @@ Sposób implementacji sterowania BSP pozwala na dodawanie różnych modeli grafi
     \label{fig:edycja-kamery}
 \end{figure}
 
-Ponieważ zakłada się stałe zmienianie zadań, aplikacja uruchamiania jest bezpośrednio z programu Unreal Editor. Z tego powodu graficzny interfejs uzytkownika w trakcie działania aplikacji jest ograniczony jedynie do funkcji informacyjnej. Po uruchomieniu aplikacji bez podłączonych okularów wirtualnej rzeczywistości, przy narożnikach okna rysowane są wskaźniki informujące o stanie połączenia z symulacją serwerem oceny, lub o trwającym zapisie danych. Aby zachować realizm symulacji i nie rozpraszać operatora nierzeczywistymi obiektami które unoszą się w powietrzu na skraju pola widzenia, te same wskaźniki zostały umieszczone na pulpicie umieszonym bezpośrednio przed operatorem.
+Ponieważ zakłada się stałe zmienianie zadań, aplikacja uruchamiania jest bezpośrednio z programu Unreal Editor. Z tego powodu graficzny interfejs uzytkownika w trakcie działania aplikacji jest ograniczony jedynie do funkcji informacyjnej. Po uruchomieniu aplikacji bez podłączonych okularów wirtualnej rzeczywistości, przy narożnikach okna rysowane są wskaźniki informujące o stanie połączenia z symulacją serwerem oceny, lub o trwającym zapisie danych przedstawione na rysunku \ref{fig:gui-2d}. Aby zachować realizm symulacji i nie rozpraszać operatora nierzeczywistymi obiektami które unoszą się w powietrzu na skraju pola widzenia, te same wskaźniki zostały umieszczone na pulpicie umieszonym bezpośrednio przed operatorem widocznym na rysunku \ref{fig:gui-vr}.
 
 \begin{figure}[!h]
     \centering \includegraphics[width=\linewidth]{gui-2d.png}
@@ -103,9 +103,11 @@ Ponieważ zakłada się stałe zmienianie zadań, aplikacja uruchamiania jest be
     \label{fig:gui-2d}
 \end{figure}
 
-\begin{todo}
-    screen z panelem zrobiony w VR
-\end{todo}
+\begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{gui-vr.png}
+    \caption{Interfejs graficzny w środowisku wirtualnej rzeczywistości}
+    \label{fig:gui-vr}
+\end{figure}
 
 \begin{todo}
     źródła zastosowanych modeli i tekstur: własne, Raczek od Melavio, Igor Samek, Starter Content
@@ -134,7 +136,7 @@ Zestaw informacji dostępnych do oceny opratora można odczytać ze specyfikacji
     \item zdarzenia w formie listy tekstowych identyfikatorów
 \end{itemize}
 
-Poprawnie działający serwer oceny powinien na każdą otrzymaną wiadomość o stanie symulacji odpowiedzieć wiadomością z oceną w formacie \emph{assessmentMessage}. W każdej wiadomości wysyłany jest tekst informacyjny, który może zawierać na przykład nazwę wykorzystanej funkcji oceniającej, a także lista klatek oceny. Każdej klatce stanu symulacji powinna odpowiadać dokładnie jedna klatka oceny posiadająca taki sam znacznik czasu. Oprócz znacznika czasu, klatka oceny zawiera wynik oceny w postaci zbioru list rzeczywistych w ustalonej kolejności. Pierwszy element jest obowiązkowy, musi należeć do przedziału $ \langle 0; 1 \rangle $ i reprezentować ogólną jakość sterowania w danej chwili, przy czym wyższe wartości reprezentują lepsze sterowanie. Po otrzymaniu ta informacja zwrotna jest prezentowana operatorowi w trakcie wykonywania ćwiczenia, na rysunkach \ref{fig:gui-2d} oraz \begin{todo}VR\end{todo} jako prostokąt o zmiennym zielonym wypełnieniu. Kolejne wyniki oceny mogą zawierać dowolne wartości rzeczywiste, a ich znaczenie zależy od zastosowanej funkcji oceny. Aby móc je poprawnie interpretować ważne jest aby ich znaczenie lub przynajmniej zastosowana funkcja zostały przesłane w tekście informacyjnym, dzięki czemu będą zapisane do wynikowych plików CSV razem z wartościami oceny.
+Poprawnie działający serwer oceny powinien na każdą otrzymaną wiadomość o stanie symulacji odpowiedzieć wiadomością z oceną w formacie \emph{assessmentMessage}. W każdej wiadomości wysyłany jest tekst informacyjny, który może zawierać na przykład nazwę wykorzystanej funkcji oceniającej, a także lista klatek oceny. Każdej klatce stanu symulacji powinna odpowiadać dokładnie jedna klatka oceny posiadająca taki sam znacznik czasu. Oprócz znacznika czasu, klatka oceny zawiera wynik oceny w postaci zbioru list rzeczywistych w ustalonej kolejności. Pierwszy element jest obowiązkowy, musi należeć do przedziału $ \langle 0; 1 \rangle $ i reprezentować ogólną jakość sterowania w danej chwili, przy czym wyższe wartości reprezentują lepsze sterowanie. Po otrzymaniu ta informacja zwrotna jest prezentowana operatorowi w trakcie wykonywania ćwiczenia, na rysunkach \ref{fig:gui-2d} oraz \ref{fig:gui-vr} jako prostokąt o zmiennym zielonym wypełnieniu. Kolejne wyniki oceny mogą zawierać dowolne wartości rzeczywiste, a ich znaczenie zależy od zastosowanej funkcji oceny. Aby móc je poprawnie interpretować ważne jest aby ich znaczenie lub przynajmniej zastosowana funkcja zostały przesłane w tekście informacyjnym, dzięki czemu będą zapisane do wynikowych plików CSV razem z wartościami oceny.
 
 \subsection{Dokumentacja}
 Aby ułatwić wykorzystanie systemu do własnych badań, przygotowano dokumentację dla użytkownika. Aktualna wersja jest publicznie dostępna w formie strony internetowej\cite{uavdocs2021}, obecnie jedynie w języku angielskim. Została podzielona na część podstawową \emph{User Guide} oraz zaawansowaną \emph{Developer Guide}. Zawiera listę niezbędnego oprogramowania, instrukcje jak pobrać kod źródłowy systemu oraz jak uruchomić i obsługiwać poszczególne aplikacje składowe. Opisano także sposób dodawania nowych ćwiczeń, modeli BSP, własnych funkcji oceniających i wprowadzania innych modyfikacji do działania systemu.

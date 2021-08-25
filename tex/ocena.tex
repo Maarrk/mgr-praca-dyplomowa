@@ -1,7 +1,15 @@
 \newpage
 \section{Ocena operatorów BSP}
+\begin{todo}
+    Zmienić sformułowania że system jest jakiś na to że jest tworzony --- podkreślić że nie jest produktem końcowym.
+
+    Nadal z tekstu wynika że jest próba zastąpienia instruktora
+
+    Dodać więcej o postępach w trakcie szkolenia, nie tylko ocena egzaminu.
+\end{todo}
 
 \subsection{Tradycyjna forma egzaminu}
+\label{sec:tradycyjny-egzamin}
 W niniejszej pracy, system stosowany jest jako narzędzie pomocnicze w przygotowaniu kandydatów do egzaminu praktycznego w celu uzyskania Świadectwa Kwalifikacji Presonelu Lotniczego z uprawnieniem podstawowym UAVO. Obecnie, egzamin praktyczny jest wymagany jedynie dla operatorów planujących loty w kategorii szczególnej\cite{ulc2019}, natomiast ogólne zasady lotu i kompetencje pozostają podobne. Ponadto uwarunkowania epidemiologiczne panujące od wprowadzenia nowych przepisów z końcem roku 2020 do momentu pisania niniejszej pracy, powodują trudności w organizacji egzaminów praktycznych. Z tych powodów, zadania będą przygotowywane dla egzaminów prowadzonych na podstawie wycofanych przepisów krajowych, a nie obowiązujących przepisów europejskich. Znaczna większość operacji BSP odbywa się na wielowirnikowcach --- dawna kategoria UAVO(MR), obecnie NSTS-02 oraz NSTS-06. Z tego powodu w następujących rozważaniach będzie uwzględniony tylko ten typ statku powietrznego.
 
 Egzamin praktyczny do uzyskania na uprawnień operatora BSP składa się z kilku etapów, obejmujących także przygotowanie do lotu oraz obsługę naziemną\cite{ulc2014}. Przygotowany system oceny dotyczy tylko jakości pilotażu, do których odnoszą się zadania w zakresie ,,Wykonywanie czynności lotniczych''. Znajomość postępowania w sytuacjach awaryjnych jest weryfikowana tylko przez omówienie, więc także zostanie pominięta.
@@ -116,7 +124,16 @@ Aby opracowany system był użyteczny do szkolenia, oraz umożliwiał porównani
     F[ \vec{x}(t) ] &= \sum_{j=1}^{L} l_j \cdot \int_{t_0}^{t_k} [ x_j(t) - x_{ref_j}(t) ]^2 \operatorname{d}t
 \end{align}
 
+\begin{todo}
+    Wzory są nie do końca jasne; opisać na rzutach na płaszczyźnie lub wykresie 2D.
+\end{todo}
 Spośród zadań części praktycznej zebranych w tabeli \ref{tab:ocena-egzamin}, do szczegółowej oceny liczbowej wybrano te które mają oceniane kilka parametrów oraz nie polegają na interakcji z podłożem. Ćwiczenia które spełniają te warunki to lot po prostej, lot w zakręcie oraz zawis. Mozna dla nich sformułować uchyb jako odległość $ \delta_{A,B} $ pomiędzy pozycją BSP $ P $ a pewną wzorcową krzywą $ s_{ref} $ opisującą trasę przelotu, lub punktem $ P_{ref} $ w przypadku zawisu. Analogicznie, wymogi dla sterowania kierunkowego w zadaniach związanych z ruchem można opisać jako minimalizację kąta pomiędzy kierunkiem przednim ramy BSP oraz kątem drogi $ \psi_{KD} $. W powietrzu nieruchomym względem podłoża, ten kąt byłby równy kątowi ślizgu. Dla zawisu jest oceniana minimalizacja różnicy pomiędzy kątem odchylenia BSP $ \psi $, a zadanym przez egzaminatora kierunkiem $ \psi_{ref} $. Rysunek \ref{fig:definicjebledu} zawiera graficzne przedstawienie wprowadzonych tu definicji. Zawis wykonywany jest przez określony, stały odcinek czasu. Aby większa długość wykonywania lotu po prostej nie wpływała negatywnie na wskaźnik oceny, wyniki całkowania są dzielone przez czas wykonywania ćwiczenia. W przypadku prowadzenia BSP w zakręcie, ćwiczenie należy wykonywać w dość szybkim locie, dlatego wartość celowo nie jest uśredniana. Podsumowanie kryteriów dla zadań w typowej kolejności wykonywania ich w trakcie egzaminu przedstawiono w tabeli \ref{tab:ocena-funkcje}.
+
+\begin{todo}
+    Rysunek \ref{fig:definicjebledu} średnio czytelny
+
+    Osie nie podpisane, kąt niejasno określony
+\end{todo}
 
 \begin{figure}[!h]
     \centering \includegraphics[width=0.8\linewidth]{definicjebledu.pdf}
