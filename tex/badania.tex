@@ -46,10 +46,6 @@ Kolejne wykonywane ćwiczenie ma na celu opanowanie lotu po prostej. Identyczne 
 \end{figure}
 
 \subsection{Przebieg eksperymentu}
-\begin{todo}
-    Wybrane kilka osób, o różnym stopniu doświadczenia w pilotażu BSP. Ta sama liczba podejść do każdego z zadań.
-\end{todo}
-
 We wszystkich próbach wykorzystywany był domyślny model dynamiczny wielowirnikowca zaimplementowany w bibliotece ArduPilot SITL\cite{sitl-model}. Najważniejsze parametry modelu przedstawiono w tabeli \ref{tab:sitl-model}. Należy zrócić uwagę, że ponieważ modelowana jest jedna konfiguracja elektrycznego statku powietrznego, masa pozostaje stała --- nie ma potrzeby rozdzielać jej na maksymalną, suchą etc. Operatorzy sterowali modelem wykorzystując rzeczywisty nadajnik zdalnego sterowania \emph{FrSKY Horus X10 Express} widoczny na rysunku \ref{fig:frsky-horus}. Drążki sterowe były ustawione w układzie \emph{Mode 2}, który jest najbardziej popularny\cite{mcnabb2021}. Lewy drążek wychylany w lewo lub prawo powodował odpowiadające sterowanie w osi odchylenia. Wychylenie lewego drążka do góry zwiększa wysokość, a w dół obniża lot. Prawy drążek sterowy ma przypisane osie pochylenia i przechylenia identycznie jak w samolotach. Trzy osie, z wyjątkiem sterowania wysokością są wyposażone w sprężyny które przywracają je do położenia centralnego.
 \begin{table}[!h] \centering
     \caption{Charakterystyczne wielkości modelowanego BSP}
@@ -78,7 +74,20 @@ We wszystkich próbach wykorzystywany był domyślny model dynamiczny wielowirni
     \label{fig:frsky-horus}
 \end{figure}
 
+\begin{todo}
+    Tabela z wykonanymi lotami
+\end{todo}
+
 \subsection{Wyniki}
 \begin{todo}
-    Zestawienie wyników poszczególnych operatorów, w kolejnych podejściach do danego zadania. Wykres \emph{learning curve}.
+    \begin{itemize}
+        \item postępy w nauce
+        \item porównanie z bardziej doświadczonymi operatorami
+        \item gorsze wyniki w trudniejszych warunkach
+        \begin{itemize}
+            \item lot z GNSS lub bez wiatru kontra z wiatrem
+            \item wyniki dla różnych kierunków wiatru
+            \item wyniki dla różnych orientacji BSP
+        \end{itemize}
+    \end{itemize}
 \end{todo}

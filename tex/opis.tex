@@ -2,14 +2,17 @@
 \section{Opis systemu}
 \label{sec:opis}
 
-\begin{todo}
-W całym rozdziale najpierw dawać plan co chcemy osiągnąć abstrakcyjny, a potem dopiero implementację.
-\end{todo}
+Aby spełnić wszystkie postawione powyżej wymagania, zdecydowano podzielić system na kilka osobnych aplikacji, pomiędzy którymi komunikacja jest zrealizowana za pomocą adekwatnych protokołów sieciowych lub plików. Zdecydowano W celu zapewnienia czytelnej struktury systemu i rozdziału odpowiedzialności\footnote{ang. \emph{separation of concerns}}, wprowadzono następujący podział:
+\begin{itemize}
+    \item symulacja dynamiki \textbf{LUB} telemetria rzeczywistego BSP
+    \item aplikacja wizualna
+    \item aplikacja oceniająca
+\end{itemize}
 
 \subsection{Architektura}
 \label{sec:architektura}
 
-Aby spełnić wszystkie postawione powyżej wymagania, zdecydowano podzielić system na kilka osobnych aplikacji, pomiędzy którymi komunikacja jest zrealizowana za pomocą adekwatnych protokołów sieciowych lub plików. Poszczególne moduły oraz połączenia pomiędzy nimi przedstawiono na rysunku \ref{fig:architektura}. Dzięki takiemu rozwiązaniu, można było wykorzystać dostępne oprogramowanie do symulacji dynamiki oraz kompletne oprogramowanie autopilota stosowane na rzeczywistych BSP. Dużą zaletą zastosowania ArduPilot SiTL\cite{soft:sitl} jest format danych w którym przesyłane są informacje o stanie BSP. Ponieważ jest identyczny z komunikacją wysyłaną z rzeczywistego BSP kontrolowanego z wykorzystaniem \emph{firmware} ArduPilot, można wykorzystywać taki sam program do łączenia z symulacją jak i fizycznym BSP w trybie rzeczywistości rozszerzonej (AR).
+Konkretne biblioteki wybrane do implementacji systemu przedstawiono na rysunku \ref{fig:architektura}. Dużą zaletą zastosowania ArduPilot SiTL\cite{soft:sitl} jest format danych w którym przesyłane są informacje o stanie BSP. Ponieważ jest identyczny z komunikacją wysyłaną z rzeczywistego BSP kontrolowanego z wykorzystaniem \emph{firmware} ArduPilot, można wykorzystywać taki sam program do łączenia z symulacją jak i fizycznym BSP w trybie rzeczywistości rozszerzonej (AR).
 
 \begin{figure}[!h]
     \centering \includegraphics[width=0.8\linewidth]{architektura.pdf}
@@ -17,7 +20,7 @@ Aby spełnić wszystkie postawione powyżej wymagania, zdecydowano podzielić sy
     \label{fig:architektura}
 \end{figure}
 
-Aby móc stosować jedną aplikację zarówno z goglami VR oraz AR, wizualizacja została przygotowana z wykorzystaniem Unreal Engine 4\cite{soft:ue4}. To środowisko jest przykładem tzw. ,,silnika'' gier komputerowych. Aby umożliwić uruchamianie tej samej aplikacji na różnych platformach z wykorzystaniem różnego sprzętu, wprowadza liczne warstwy abstrakcji i gotowe klasy, dzięki czemu użytkownik musi jedynie zaimplementować własne kluczowe funkcjonalności programu (tzw. \emph{business logic}). Widoczny na schemacie ,,Kontroler Xbox'' jest popularnym urządzeniem, które wykorzystywane jest w grach komputerowych. Ponieważ także posiada parę dwuosiowych drążków, ale jest prostszy w obsłudze od pełnego nadajnika zdalnego sterowania dla BSP, jest zastosowany jako zastępczy kontroler do prowadzenia prostych testów nowych funkcji bez potrzeby uruchamiania programu symulacyjnego AP~SiTL. Podobnie jak w przypadku urządzeń wyświetlających, sterownik jest zaimplementowany przez zespół Unreal, konieczne było jedynie przypisanie odpowiednich funkcji do przycisków i analogowych osi urządzenia.
+Aby móc stosować jedną aplikację zarówno z goglami VR oraz AR, wizualizacja została przygotowana z wykorzystaniem Unreal Engine 4\cite{soft:ue4}. To środowisko jest przykładem opsiywanego wczesniej silnika gier komputerowych. Aby umożliwić uruchamianie tej samej aplikacji na różnych platformach z wykorzystaniem różnego sprzętu, wprowadza liczne warstwy abstrakcji i gotowe klasy, dzięki czemu użytkownik musi jedynie zaimplementować własne kluczowe funkcjonalności programu (tzw. \emph{business logic}). Widoczny na schemacie ,,Kontroler Xbox'' jest popularnym urządzeniem, które wykorzystywane jest w grach komputerowych. Ponieważ także posiada parę dwuosiowych drążków, ale jest prostszy w obsłudze od pełnego nadajnika zdalnego sterowania dla BSP, jest zastosowany jako zastępczy kontroler do prowadzenia prostych testów nowych funkcji bez potrzeby uruchamiania programu symulacyjnego AP~SiTL. Podobnie jak w przypadku urządzeń wyświetlających, sterownik jest zaimplementowany przez zespół Unreal, konieczne było jedynie przypisanie odpowiednich funkcji do przycisków i analogowych osi urządzenia.
 
 Środowisko Unreal Engine oferuje wiele gotowych funkcji, ale przez to jego kod źródłowy jest bardzo obszerny i może być przytłaczający dla nowego użytkownika. Aby umożliwić pisanie funkcji oceniających operatora w językach innych niż C++ oraz rozwiązać wspomniany problem skomplikowania środowiska, ocena operatora także została wydzielona do osobnego procesu.
 
@@ -109,9 +112,7 @@ Ponieważ zakłada się stałe zmienianie zadań, aplikacja uruchamiania jest be
     \label{fig:gui-vr}
 \end{figure}
 
-\begin{todo}
-    źródła zastosowanych modeli i tekstur: własne, Raczek od Melavio, Igor Samek, Starter Content
-\end{todo}
+Większość wykorzystanych modeli i tekstur została wykonana przez autora. Pozostałe zostały podarowane przez tech. Igora Samka, który udostepnił je na licencji CC-BY\cite{lic:ccby}. Tekstury i oprogramowanie dla materiału wchodzą w skład pakietu ,,Starter Content'' silnika Unreal Engine\cite{soft:ue4} i mogą być rozpowszechniane jako część aplikacji opartych na UE4, także w formie źródłowej.
 
 \subsection{Serwer oceny}
 W przeciwieństwie do informacji o stanie BSP, dane na potrzeby oceny operatora nie muszą być dostarczone z najmniejszym możliwym opóźnieniem, natomiast dużo ważniejsza jest pewność dostarczenia kompletu pakietów. Z tego powodu do komunikacji z procesem oceniającym jakość pilotażu operatora, zastosowano protokół TCP/IP. Podczas rozwoju systemu, zauważono że wizualizacja jest znacznie częściej uruchamiana i zatrzymywana, więc przyjęto konwencję że program oceniający jest serwerem, a aplikacja wizualna łączącym się z nim klientem.
