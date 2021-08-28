@@ -2,16 +2,27 @@
 \section{Podsumowanie}
 
 \subsection{Ocena wyników}
-W ramach pracy udało się zrealizować większość wymagań sformułowanych wobec systemu. Implementując zadania z egzaminu praktycznego ULC zademonstrowano możliwość wykorzystania edytora poziomów do tworzenia róznych ćwiczeń. Ponadto, dla każdego z nich można było dobrać funkcję oceniającą tak, aby matematycznie opisać poprawność wykonywania zadania. Zestaw parametrów dostępny do oceny okazał się wystarczający dla egzaminu praktycznego UAVO, a ponadto zaproponowano modyfikacje służące do wykonywania ćwiczeń innego rodzaju.
+W ramach pracy udało się zrealizować większość wymagań sformułowanych wobec systemu. Implementując zadania z egzaminu praktycznego ULC zademonstrowano możliwość wykorzystania edytora poziomów do tworzenia róznych ćwiczeń. Ponadto, dla każdego z nich można było dobrać funkcję oceniającą tak, aby matematycznie opisać poprawność wykonywania zadania. Zestaw parametrów dostępny do oceny okazał się wystarczający do wyciągnięcia serii wniosków, a ponadto zaproponowano modyfikacje służące do wykonywania ćwiczeń innego rodzaju.
 
 Aplikacja działa poprawnie w trybie wirtualnej rzeczywistości (VR), natomiast tylko częściowo zrealizowano tryb rzeczywistości mieszanej (AR). Mimo niepełnej realizacji tego celu, na etapie projektowania podjęto decyzje dzięki którym dodanie tego trybu pracy będzie możliwe. Ponadto wskazano główne zadania do wykonania w tym celu, oraz zaproponowano sposoby ich rozwiązania.
 
 \subsection{Wykorzystane narzędzia}
 Proces przygotowywania niniejszego systemu wymagał wykorzystania różnorodnego oprogramowania pomocniczego. Ważnym kryterium przy wyborze poszczególnych narzędzi były warunki użytkowania. Stosowanie wolnego oprogramowania gwarantuje prawo do użytkowania oraz modyfikowania programu bez możliwości wprowadzenia opłat lub cofnięcia tych praw. Wynikająca z tego przejrzystość i dostępność ma szczególnie pozytywne znaczenie w środowisku naukowym \cite{courant2006}, \cite{lakhan2008}.
 
-\begin{todo}
-    Licencje na poszczególne składniki
-\end{todo}
+Kod źródłowy opracowanego systemu wraz z dokumentacją jest dostępny na w publicznym repozytorium Git pod adresem \url{https://github.com/wut-daas/uav-assess-vr}
+
+Kod źródłowy niniejszego dokumentu, włącznie z surowymi danymi z lotów, oraz skryptami do obróbki wyników są dostępne w publicznym repozytorium Git autora pod adresem \url{https://github.com/Maarrk/mgr-praca-dyplomowa}.
+
+Z wyjątkiem silnika Unreal Engine, oprogramowanie wchodzące w skład systemu oraz narzędzia użyte w pisaniu niniejszej pracy należą do wolnego oprogramowania. Lista wykorzystanego oprogramowania pogrupowana według licencji:
+\begin{itemize}
+    \item MIT: \cite{soft:vuepress}, \cite{soft:vscode}, źródła systemu
+    \item GPL-3.0: \cite{soft:sitl}, \cite{soft:blender}, \cite{soft:wutthesis}, źródła pracy dyplomowej
+    \item GPL-2.0: \cite{soft:git}, \cite{soft:tortoisesvn}
+    \item LGPL-3.0: \cite{soft:mavlink}
+    \item BSD-3: \cite{soft:pandas}
+    \item Apache 2.0: \cite{soft:svn}
+    \item LPPL: \cite{soft:latex}
+\end{itemize}
 
 \subsection{Podziękowania}
 \begin{todo}

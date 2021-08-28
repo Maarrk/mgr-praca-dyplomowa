@@ -118,9 +118,9 @@ Aby opracowany system był użyteczny do szkolenia, oraz umożliwiał porównani
     F[ \vec{x}(t) ] &= \sum_{j=1}^{L} l_j \cdot \int_{t_0}^{t_k} [ x_j(t) - x_{ref_j}(t) ]^2 \operatorname{d}t
 \end{align}
 
-\begin{todo}
-    Wzory są nie do końca jasne; opisać na rzutach na płaszczyźnie lub wykresie 2D.
-\end{todo}
+% \begin{todo}
+%     Wzory są nie do końca jasne; opisać na rzutach na płaszczyźnie lub wykresie 2D.
+% \end{todo}
 Spośród zadań części praktycznej zebranych w tabeli \ref{tab:ocena-egzamin}, do szczegółowej oceny liczbowej wybrano te które mają oceniane kilka parametrów oraz nie polegają na interakcji z podłożem. Ćwiczenia które spełniają te warunki to lot po prostej, lot w zakręcie oraz zawis. Mozna dla nich sformułować uchyb jako odległość $ \delta_{A,B} $ pomiędzy pozycją BSP $ P $ a pewną wzorcową krzywą $ s_{ref} $ opisującą trasę przelotu, lub punktem $ P_{ref} $ w przypadku zawisu. Analogicznie, wymogi dla sterowania kierunkowego w zadaniach związanych z ruchem można opisać jako minimalizację kąta pomiędzy kierunkiem przednim ramy BSP oraz kątem drogi $ \psi_{KD} $. W powietrzu nieruchomym względem podłoża, ten kąt byłby równy kątowi ślizgu. Dla zawisu jest oceniana minimalizacja różnicy pomiędzy kątem odchylenia BSP $ \psi $, a zadanym przez egzaminatora kierunkiem $ \psi_{ref} $. Rysunek \ref{fig:definicjebledu} zawiera graficzne przedstawienie wprowadzonych tu definicji. Zawis wykonywany jest przez określony, stały odcinek czasu. Aby większa długość wykonywania lotu po prostej nie wpływała negatywnie na wskaźnik oceny, wyniki całkowania są dzielone przez czas wykonywania ćwiczenia. W przypadku prowadzenia BSP w zakręcie, ćwiczenie należy wykonywać w dość szybkim locie, dlatego wartość celowo nie jest uśredniana. Podsumowanie kryteriów dla zadań w typowej kolejności wykonywania ich w trakcie egzaminu przedstawiono w tabeli \ref{tab:ocena-funkcje}.
 
 \begin{figure}[!h]
@@ -146,6 +146,19 @@ Spośród zadań części praktycznej zebranych w tabeli \ref{tab:ocena-egzamin}
   \end{tabular}
 \end{table}
 
-% \begin{todo}
-%     Specjalnie zrobić przykładowe loty bardzo dobre i bardzo słabe żeby wskazać że te algorytmy oceny działają.
-% \end{todo}
+Na potrzeby oceny przygotowanych zadań arbitralnie przyjęto za wartość odniesienia błąd pozycji o 5~m oraz błąd kąta odchylenia o 90°. Na tej podstawie w równaniu \ref{eq:wagi} obliczono wagi obu składników oceny, pamiętając że wartości błędu są podnoszone do drugiej potęgi przed całkowaniem.
+
+\begin{align}
+    \label{eq:wagi}
+    l_1 &= \frac{1}{(5\text{m})^2} = 0.040 \frac{1}{\text{m}^2}
+    \\
+    l_2 &= \frac{1}{(90^{\circ})^2} = 1.234 \cdot 10^{-4} \frac{1}{(^{\circ})^2}
+\end{align}
+
+Sumując funkcje opisane w tabeli \ref{tab:ocena-funkcje} z wagami z równania \ref{eq:wagi}, obliczono ocenę dwóch podejść do ćwiczenia zawisu. Aby zweryfikować poprawność wybranych zależności porównano pierwszy lot wykonany przez niedoświadczonego operatora Alfa, oraz doświadczonego operatora Golf. Zadaniem obu było utrzymywanie BSP dokładnie 5~m na północ od początku lokalnego układu nawigacyjnego. Na rysunku \ref{fig:plot-weryfikacja} zostały przedstawione tor lotu i ocena przypisana do obu z tych podejść. Można zauważyć że w przypadku kiedy BSP pozostawał w pobliżu docelowej pozycji, została przypisana znacznie niższa ocena, zgodnie z założeniami.
+
+\begin{figure}[!h]
+    \centering \includegraphics[width=\linewidth]{plot-weryfikacja.pdf}
+    \caption{Porównanie toru lotu i oceny dla dwóch operatorów}
+    \label{fig:plot-weryfikacja}
+\end{figure}

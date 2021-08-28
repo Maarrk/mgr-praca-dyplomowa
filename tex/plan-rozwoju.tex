@@ -4,11 +4,12 @@ Możliwość łatwego rozwijania aplikacji była wielokrotnie wspominana w rozdz
 
 Zakłada się że użytkownik aplikacji prowadząc własne badania, będzie mógł łatwo zastosować własne funkcje oceniające w trakcie działania aplikacji. Gdyby modyfikacja serwera oceny nie była preferowaną formą implementacji, wszystkie dane dostępne na bieżąco są także zapisywane do plików zapisu lotu w celu późniejszej obróbki. Podobnie, korzystając z edytora poziomów aplikacji Unreal Engine, oraz obiektów przygotowanych przez autora, można w graficzny sposób ułożyć różne nowe zadania zawierające przeszkody, trajektorie lotu i inne obiekty wizualne.
 
-Kolejnym elementem łatwym w modyfikacji jest model dynamiczny statku powietrznego. Dzięki separacji od reszty systemu, możliwy jest wybór dowolnej symulacji obsługiwanej przez środowisko ArduPilot. Wśród alternatywnych programów do symulacji można wymienić m.~in. X-Plane-10, Gazebo, oraz MATLAB Simulink. Oprócz narzędzi dostępnych od twórców oprogramowania ArduPilot, dowolne oprogramowanie wykorzystujące protokół MAVLink może być podłączone. \begin{todo}Stosując odpowiedni program tłumaczący możliwe jest podłączenie także komercyjnego oprogramowania FLIGHTLAB praca Łukasza\end{todo}.
+Kolejnym elementem łatwym w modyfikacji jest model dynamiczny statku powietrznego. Dzięki separacji od reszty systemu, możliwy jest wybór dowolnej symulacji obsługiwanej przez środowisko ArduPilot. Wśród alternatywnych programów do symulacji można wymienić m.~in. X-Plane-10, Gazebo, oraz MATLAB Simulink. Oprócz narzędzi dostępnych od twórców oprogramowania ArduPilot, dowolne oprogramowanie wykorzystujące protokół MAVLink może być podłączone. Przykładem może być BSP lub symulacja wykorzystujące oprogramowanie autopilota PX4.
+% \begin{todo}
+%     Stosując odpowiedni program tłumaczący możliwe jest podłączenie także komercyjnego oprogramowania FLIGHTLAB - praca Łukasza
 
-\begin{todo}
-    Prace zespołu Boeing
-\end{todo}
+%     Prace zespołu Boeing
+% \end{todo}
 
 \subsection{Implementacja rzeczywistości rozszerzonej}
 Zgodnie z wymaganiami sformułowanymi we wstępie, przygotowany system można wykorzystać w trójetapowym programie szkolenia ,,wirtualny --- mieszany --- rzeczywisty BSP''. W momencie pisania niniejszej pracy, wersja rzeczywistości mieszanej nie jest jeszcze w pełni zaimplementowana. Następujący fragment wskazuje wyzwania związane z zastosowaniem aplikacji AR w kontekście BSP, oraz opisuje rozwiązania planowane do implementacji w miarę postępu prac. Porównanie podobieństw i różnic pomiędzy trybem działania VR oraz AR zostało przedstawione w skróconej formie w tabeli \ref{tab:modyfikacje-ar}.
