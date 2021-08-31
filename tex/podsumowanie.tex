@@ -2,22 +2,26 @@
 \section{Podsumowanie}
 
 \subsection{Ocena wyników}
-W ramach pracy udało się zrealizować większość wymagań sformułowanych wobec systemu. Implementując kilka zadań naśladujących egzamin praktyczny zademonstrowano możliwość wykorzystania edytora poziomów do tworzenia różnych ćwiczeń. Ponadto, dla każdego z nich można było dobrać funkcję oceniającą tak, aby matematycznie opisać poprawność wykonywania zadania. Zestaw parametrów dostępny do oceny okazał się wystarczający do wyciągnięcia serii wniosków, a ponadto zaproponowano modyfikacje służące do wykonywania ćwiczeń innego rodzaju.
+W ramach pracy udało się zrealizować większość wymagań sformułowanych wobec systemu. Implementując kilka zadań naśladujących egzamin praktyczny zademonstrowano możliwość wykorzystania edytora poziomów do tworzenia różnych ćwiczeń. Ponadto, dla każdego z nich można było dobrać funkcję oceniającą tak, aby matematycznie opisać poprawność wykonywania zadania. Zestaw parametrów dostępny do oceny okazał się wystarczający do wyciągnięcia serii wniosków na temat umiejętności operatorów oraz różnych warunków lotu.
 
 Aplikacja działa poprawnie w trybie wirtualnej rzeczywistości (VR), natomiast tylko częściowo zrealizowano tryb rzeczywistości mieszanej (AR). Mimo niepełnej realizacji tego celu, na etapie projektowania podjęto decyzje dzięki którym dodanie tego trybu pracy będzie możliwe. Ponadto wskazano główne zadania do wykonania w tym celu, oraz zaproponowano sposoby ich rozwiązania.
+
+Zrealizowano podstawowy cel systemu zakładający obiektywną ocenę operatorów. Nawet przy stosunkowo małej próbce osób oraz wykonanych lotów, na podstawie wyników można było wskazać bardziej oraz mniej doświadczonych uczestników badania. Najbardziej wyraźna różnica wystąpiła właśnie w porównaniu z wykorzystaniem ogólnej oceny, co sugeruje także poprawność sformułowanych kryteriów.
+
+Należy podkreślić, że badania wykonane w ramach tej pracy służyły głównie jako sposób walidacji działania całego systemu. Podstawowym celem było przygotowanie narzędzia, które może być wykorzystane do kolejnych, bardziej złożonych eksperymentów. Głównym projektem dla którego zostało opracowane to rozwiązanie, jest implementacja trójstopniowego szkolenia ,,wirtualny --- mieszany --- rzeczywisty BSP''. Wiele rozwiązań zostało zastosowanych ponieważ, w miarę postępu prac nad rozwojem tej koncepcji, prawdopodobnie potrzebne będą nowe scenerie, algorytmy oceny lub statki powietrzne.
 
 \subsection{Wykorzystane narzędzia}
 Proces przygotowywania niniejszego systemu wymagał wykorzystania różnorodnego oprogramowania pomocniczego. Ważnym kryterium przy wyborze poszczególnych narzędzi były warunki użytkowania. Stosowanie wolnego oprogramowania gwarantuje prawo do użytkowania oraz modyfikowania programu bez możliwości wprowadzenia opłat lub cofnięcia tych praw. Wynikająca z tego przejrzystość i dostępność ma szczególnie pozytywne znaczenie w środowisku naukowym \cite{courant2006}, \cite{lakhan2008}.
 
-Kod źródłowy opracowanego systemu wraz z dokumentacją jest dostępny na w publicznym repozytorium Git pod adresem \url{https://github.com/wut-daas/uav-assess-vr}
+Kod źródłowy opracowanego systemu wraz z dokumentacją jest dostępny w publicznym repozytorium Git pod adresem \url{https://github.com/wut-daas/uav-assess-vr}
 
 Kod źródłowy niniejszego dokumentu, włącznie z surowymi danymi z lotów, oraz skryptami do obróbki wyników są dostępne w publicznym repozytorium Git autora pod adresem \url{https://github.com/Maarrk/mgr-praca-dyplomowa}.
 
-Z wyjątkiem silnika Unreal Engine\cite{soft:ue4}, oprogramowanie wchodzące w skład systemu oraz narzędzia użyte w pisaniu niniejszej pracy należą do wolnego oprogramowania. Lista wykorzystanego oprogramowania pogrupowana według licencji:
+Z wyjątkiem silnika Unreal Engine \cite{soft:ue4}, oprogramowanie wchodzące w skład systemu oraz narzędzia użyte w pisaniu niniejszej pracy należą do wolnego oprogramowania. Lista wykorzystanego oprogramowania pogrupowana według licencji:
 \begin{itemize}
     \item MIT: \cite{soft:vuepress}, \cite{soft:vscode}, źródła systemu
     \item GPL-3.0: \cite{soft:sitl}, \cite{soft:blender}, \cite{soft:wutthesis}, źródła pracy dyplomowej
-    \item GPL-2.0: \cite{soft:git}, \cite{soft:tortoisesvn}
+    \item GPL-2.0: \cite{soft:git}, \cite{soft:tortoisesvn}, \cite{soft:inkscape}
     \item LGPL-3.0: \cite{soft:mavlink}
     \item BSD-3: \cite{soft:pandas}
     \item Apache 2.0: \cite{soft:svn}
@@ -27,6 +31,6 @@ Z wyjątkiem silnika Unreal Engine\cite{soft:ue4}, oprogramowanie wchodzące w s
 \subsection{Podziękowania}
 Autor pragnie złożyć podziękowanie dla Promotora niniejszej pracy, dr. inż. Antoniego Kopyta. Był głównym pomysłodawcą przeprowadzenia badań o tej tematyce i służył kierownictwem naukowym w trakcie całego procesu. Dziękuje także pozostałym pracownikom Zakładu Automatyki i Osprzętu Lotniczego, którzy chętnie pomagali przy tym i innych projektach, zarówno w trakcie studiów jak i pracy w Zakładzie.
 
-Osobne podziękowania kieruje do uczestników którzy wzięli udział w badaniach, mimo krótkiej zapowiedzi i jeszcze krótszego instruktażu przed ćwiczeniem. Z imienia autor pragnie podziękować: Igorowi Samkowi, za trójwymiarowe modele i pomoc w tworzeniu własnych. Antoniemu Kowalczukowi, za przyspieszony kurs hurtowej obróbki danych.Jakubowi Ciborowskiemu, za liczne dyskusje na tematy naukowe. Łukaszowi Grabowskiemu, za wiele miesięcy wspólnej pracy w warsztacie.
+Osobne podziękowania kieruje do uczestników którzy wzięli udział w badaniach, mimo krótkiej zapowiedzi i jeszcze krótszego instruktażu przed ćwiczeniem. Z imienia autor pragnie podziękować: Igorowi Samkowi, za trójwymiarowe modele i pomoc w tworzeniu własnych. Antoniemu Kowalczukowi, za przyspieszony kurs hurtowej obróbki danych. Jakubowi Ciborowskiemu, za liczne dyskusje na tematy naukowe i wszystkie inne. Łukaszowi Grabowskiemu, za wiele miesięcy wspólnej pracy w warsztacie.
 
-Wiele z wykorzystanych umiejętności i doświadczeń zostało nabyte dzięki działalności Koła Naukowego Awioniki ,,Melavio'' oraz Koła Naukowego Twórców Gier ,,Polygon''. Autor dziękuje wszystkim koleżankom i kolegom, z tych i innych organizacji studenckich, z którymi miał okazję razem pracować i bawić się w trakcie studiów.
+Wiele z wykorzystanych umiejętności i doświadczeń zostało nabyte dzięki działalności Koła Naukowego Awioniki ,,Melavio'' oraz Koła Naukowego Twórców Gier ,,Polygon''. Autor dziękuje wszystkim koleżankom i kolegom, z którymi miał okazję razem pracować i bawić się w trakcie studiów.

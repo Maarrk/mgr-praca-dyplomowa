@@ -760,8 +760,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.1515673"
-     inkscape:cx="145.09964"
-     inkscape:cy="138.43708"
+     inkscape:cx="155.59631"
+     inkscape:cy="102.75586"
      inkscape:document-units="mm"
      inkscape:current-layer="g2280"
      showgrid="true"
@@ -827,258 +827,134 @@
        transform="matrix(0.43640273,0.43640273,-0.43640273,0.43640273,118.40989,135.60767)"
        style="fill:#ffffff">
       <g
-         style="shape-rendering:crispEdges;stroke:none"
-         id="g1338"
-         transform="matrix(0.28746145,-1.0492245,0.80696241,0.80696241,67.742585,248.55392)">
+         style="shape-rendering:crispEdges"
+         id="g1328"
+         transform="matrix(-0.28216028,1.0530365,0.76979755,0.76979755,69.504306,242.66536)">
         <rect
-           id="rect1279"
+           id="rect1269"
            height="6"
            width="6"
            y="0"
            x="0"
-           style="fill:#999999;stroke:none" />
+           style="fill:#808080" />
+        <rect
+           id="rect1271"
+           y="1"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#808080" />
+        <rect
+           id="rect1273"
+           y="1"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#808080" />
+        <rect
+           id="rect1275"
+           y="1"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1277"
+           y="1"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1279"
+           y="2"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#808080" />
         <rect
            id="rect1281"
-           y="1"
-           x="1"
+           y="2"
+           x="2"
            height="1"
            width="1"
-           style="fill:#ffffff;stroke:none" />
+           style="fill:#808080" />
         <rect
            id="rect1283"
-           y="1"
-           x="2"
+           y="2"
+           x="3"
            height="1"
            width="1"
-           style="fill:#999999;stroke:none" />
+           style="fill:#ffffff" />
         <rect
            id="rect1285"
-           y="1"
-           x="3"
+           y="2"
+           x="4"
            height="1"
            width="1"
-           style="fill:#999999;stroke:none" />
+           style="fill:#808080" />
         <rect
            id="rect1287"
-           y="1"
-           x="4"
+           y="3"
+           x="1"
            height="1"
            width="1"
-           style="fill:#ffffff;stroke:none" />
+           style="fill:#ffffff" />
         <rect
            id="rect1289"
-           y="2"
-           x="1"
+           y="3"
+           x="2"
            height="1"
            width="1"
-           style="fill:#ffffff;stroke:none" />
+           style="fill:#808080" />
         <rect
            id="rect1291"
-           y="2"
-           x="2"
+           y="3"
+           x="3"
            height="1"
            width="1"
-           style="fill:#ffffff;stroke:none" />
+           style="fill:#808080" />
         <rect
            id="rect1293"
-           y="2"
-           x="3"
+           y="3"
+           x="4"
            height="1"
            width="1"
-           style="fill:#999999;stroke:none" />
+           style="fill:#808080" />
         <rect
            id="rect1295"
-           y="2"
-           x="4"
+           y="4"
+           x="1"
            height="1"
            width="1"
-           style="fill:#999999;stroke:none" />
+           style="fill:#ffffff" />
         <rect
            id="rect1297"
-           y="3"
-           x="1"
+           y="4"
+           x="2"
            height="1"
            width="1"
-           style="fill:#ffffff;stroke:none" />
+           style="fill:#ffffff" />
         <rect
            id="rect1299"
-           y="3"
-           x="2"
+           y="4"
+           x="3"
            height="1"
            width="1"
-           style="fill:#999999;stroke:none" />
+           style="fill:#808080" />
         <rect
            id="rect1301"
-           y="3"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#999999;stroke:none" />
-        <rect
-           id="rect1303"
-           y="3"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#999999;stroke:none" />
-        <rect
-           id="rect1305"
-           y="4"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1307"
-           y="4"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#999999;stroke:none" />
-        <rect
-           id="rect1309"
-           y="4"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#999999;stroke:none" />
-        <rect
-           id="rect1311"
            y="4"
            x="4"
            height="1"
            width="1"
-           style="fill:#ffffff;stroke:none" />
+           style="fill:#808080" />
       </g>
       <path
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.28355387;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.28355387, 0.85066162;stroke-dashoffset:0;stroke-opacity:1"
          d="m 66.966772,249.02261 7.825488,-2.09683 5.728654,5.72865 -7.825488,2.09684 z"
          id="path5320"
          inkscape:connector-curvature="0" />
-      <g
-         style="shape-rendering:crispEdges;stroke:none"
-         id="g1544"
-         transform="matrix(1.0484467,-0.28823924,0.77616396,0.77616396,68.253592,249.40525)">
-        <rect
-           id="rect1485"
-           height="6"
-           width="6"
-           y="0"
-           x="0"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1487"
-           y="1"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1489"
-           y="1"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1491"
-           y="1"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1493"
-           y="1"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1495"
-           y="2"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1497"
-           y="2"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1499"
-           y="2"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1501"
-           y="2"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1503"
-           y="3"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1505"
-           y="3"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1507"
-           y="3"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1509"
-           y="3"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1511"
-           y="4"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1513"
-           y="4"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1515"
-           y="4"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1517"
-           y="4"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-      </g>
       <path
          style="fill:#000000;stroke-width:0.42870647"
          d=""
@@ -1111,130 +987,6 @@
          d="m 4.3628856,265.79727 2.0968325,-7.82548 7.8254869,-2.09683 -2.096833,7.82548 z"
          id="path5284"
          inkscape:connector-curvature="0" />
-      <g
-         style="shape-rendering:crispEdges;stroke:none"
-         id="g1441"
-         transform="matrix(0.27124823,-1.0654376,0.77614196,0.77614196,13.005845,263.4871)">
-        <rect
-           id="rect1382"
-           height="6"
-           width="6"
-           y="0"
-           x="0"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1384"
-           y="1"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1386"
-           y="1"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1388"
-           y="1"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1390"
-           y="1"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1392"
-           y="2"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1394"
-           y="2"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1396"
-           y="2"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1398"
-           y="2"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1400"
-           y="3"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1402"
-           y="3"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1404"
-           y="3"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1406"
-           y="3"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1408"
-           y="4"
-           x="1"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1410"
-           y="4"
-           x="2"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-        <rect
-           id="rect1412"
-           y="4"
-           x="3"
-           height="1"
-           width="1"
-           style="fill:#ffffff;stroke:none" />
-        <rect
-           id="rect1414"
-           y="4"
-           x="4"
-           height="1"
-           width="1"
-           style="fill:#000000;stroke:none" />
-      </g>
       <path
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.28355387;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="m 17.917026,269.4291 -5.728654,-5.72866"
@@ -1454,6 +1206,254 @@
          id="path5352"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccc" />
+      <g
+         style="shape-rendering:crispEdges"
+         id="g1122"
+         transform="matrix(0.28532443,-1.0648453,0.77710706,0.77710706,12.94618,263.5492)">
+        <rect
+           id="rect1063"
+           height="6"
+           width="6"
+           y="0"
+           x="0"
+           style="fill:#000000" />
+        <rect
+           id="rect1065"
+           y="1"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1067"
+           y="1"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1069"
+           y="1"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1071"
+           y="1"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1073-0"
+           y="2"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1075-3"
+           y="2"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1077-8"
+           y="2"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1079-4"
+           y="2"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1081-3"
+           y="3"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1083-1"
+           y="3"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1085-1"
+           y="3"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1087-7"
+           y="3"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1089-6"
+           y="4"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1091-8"
+           y="4"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1093-6"
+           y="4"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1095-5"
+           y="4"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+      </g>
+      <g
+         style="shape-rendering:crispEdges"
+         id="g1225"
+         transform="matrix(1.0522674,-0.28195421,0.77131391,0.77131391,68.250799,249.44642)">
+        <rect
+           id="rect1166"
+           height="6"
+           width="6"
+           y="0"
+           x="0"
+           style="fill:#000000" />
+        <rect
+           id="rect1168"
+           y="1"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1170"
+           y="1"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1172"
+           y="1"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1174"
+           y="1"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1176"
+           y="2"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1178"
+           y="2"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1180"
+           y="2"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1182"
+           y="2"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1184"
+           y="3"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1186"
+           y="3"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1188"
+           y="3"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1190"
+           y="3"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1192"
+           y="4"
+           x="1"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+        <rect
+           id="rect1194"
+           y="4"
+           x="2"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1196"
+           y="4"
+           x="3"
+           height="1"
+           width="1"
+           style="fill:#000000" />
+        <rect
+           id="rect1198"
+           y="4"
+           x="4"
+           height="1"
+           width="1"
+           style="fill:#ffffff" />
+      </g>
     </g>
   </g>
 </svg>
